@@ -5,7 +5,7 @@ specifiers:
   '@types/common-tags': 1.8.1
   '@types/inquirer': 8.2.1
   '@types/node': 17.0.35
-  chalk: 4.1.2
+  chalk: 5.0.1
   commander: 9.2.0
   common-tags: 1.8.2
   contentful-management: 10.6.0
@@ -15,7 +15,7 @@ specifiers:
   typescript: 4.6.4
 
 dependencies:
-  chalk: 4.1.2
+  chalk: 5.0.1
   commander: 9.2.0
   common-tags: 1.8.2
   contentful-management: 10.6.0
@@ -262,6 +262,11 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+    dev: false
+
+  /chalk/5.0.1:
+    resolution: {integrity: sha512-Fo07WOYGqMfCWHOzSXOt2CxDbC6skS/jO9ynEcmpANMoPrD+W1r1K6Vx7iNm+AQmETU1Xr2t+n8nzkV9t6xh3w==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
     dev: false
 
   /chardet/0.7.0:
