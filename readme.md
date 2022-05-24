@@ -41,11 +41,9 @@ definitions:
 
 ```json
 {
-  ...
   "scripts": {
     "migrate": "camo"
   }
-  ...
 }
 ```
 
