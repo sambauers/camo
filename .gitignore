@@ -13,3 +13,6 @@ pnpm-error.log*
 
 # migrations testing directory
 /migrations
+
+# dotenv
+.env
