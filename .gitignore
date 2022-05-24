@@ -1,0 +1,15 @@
+# dependencies
+/node_modules
+
+# misc
+.DS_Store
+
+# debug
+pnpm-debug.log*
+pnpm-error.log*
+
+# compilation output
+/dist
+
+# migrations testing directory
+/migrations

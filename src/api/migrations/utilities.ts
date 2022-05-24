@@ -1,0 +1,23 @@
+import path from 'path'
+import type * as Migrations from './types'
+
+type FileName = Migrations.IMigration['filename']
+
+export const isValidMigrationFilename = (
+  filenameOrMigration: FileName | Migrations.IMigrationPartial
+): boolean =>
+  /^[0-9]+\-[a-z0-9-]+\.ts$/i.test(
+    typeof filenameOrMigration === 'string'
+      ? filenameOrMigration
+      : filenameOrMigration.filename
+  )
+
+export const getMigrationBasename = (
+  filename: FileName
+): Migrations.IMigration['basename'] =>
+  path.basename(filename, '.ts')
+
+export const getMigrationId = (
+  filename: FileName
+): Migrations.IMigration['id'] =>
+  parseInt(filename.replace(/^(0-9+)/, '$1'))
