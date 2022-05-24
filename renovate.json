@@ -4,5 +4,11 @@
   ],
   "enabledManagers": [
     "npm"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["chalk"],
+      "allowedVersions": "<5"
+    }
   ]
 }
