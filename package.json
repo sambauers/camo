@@ -10,9 +10,6 @@
     "name": "Sam Bauers",
     "email": "sam@wopr.com.au"
   },
-  "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
-  },
   "license": "MIT",
   "engines": {
     "node": "v16.15.0",
