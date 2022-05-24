@@ -49,8 +49,11 @@ definitions:
 
 ### Specify Contentful connection details
 
-You will probably want to specify the Contentful connection details as
-environment variables - usually in a `.env` file like so:
+CAMO will read `.env` files in your project using the pattern described by the
+[dotenv package](https://github.com/motdotla/dotenv).
+
+The relevant environment variables which control Contentful connection details
+are:
 
 ```sh
 # Contentful Active Migration Organiser (CAMO)
@@ -74,8 +77,11 @@ CONTENTFUL_MIGRATION_CONTENT_TYPE_ID='<your-contentful-content-type-id>'
 CONTENTFUL_MIGRATION_CONTENT_TYPE_NAME='<your-contentful-content-type-name>'
 ```
 
-Or you can specify these values on the command line itself while running the
-command - see the CLI options in this document.
+You can set these in other ways too, as long as they end up in the `process.env`
+object.
+
+Alternatively, you can specify these values on the command line itself through
+the equivalent command line options - see the CLI options in this document.
 
 ### Set up and specify the local migrations directory
 

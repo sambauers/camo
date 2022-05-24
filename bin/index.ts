@@ -1,5 +1,6 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
 
+import 'dotenv/config'
 import { join } from 'path'
 import { Command, Option } from 'commander'
 import { oneLine } from 'common-tags'
