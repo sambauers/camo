@@ -25,13 +25,13 @@ For `npm` that looks like this:
 
 ```sh
 # npm
-$ npm install --save-dev camo
+$ npm install --save-dev @sambauers/camo
 
 # or yarn
-$ yarn add --dev camo
+$ yarn add --dev @sambauers/camo
 
 # or pnpm
-$ pnpm add --save-dev camo
+$ pnpm add --save-dev @sambauers/camo
 ```
 
 ### Add a migrate script to your `package.json`
