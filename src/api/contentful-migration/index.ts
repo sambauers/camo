@@ -196,7 +196,7 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
           .name('Name')
           .required(true)
           .validations([
-            { regexp: { pattern: '^[0-9]+\-[a-zA-Z0-9-]+\.ts' } },
+            { regexp: { pattern: '^[0-9]+\-[a-zA-Z0-9-]+\.[jt]s' } },
             { unique: true }
           ])
 

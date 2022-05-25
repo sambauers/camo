@@ -9,19 +9,6 @@ import {
 import type * as Migrations from './types'
 import { stripIndent } from 'common-tags'
 
-const isValidDirectory = (directory?: string): boolean => {
-  if (typeof directory !== 'string' || directory === '') {
-    return false
-  }
-
-  const stat = statSync(directory, { throwIfNoEntry: false })
-  if (!stat?.isDirectory()) {
-    return false
-  }
-
-  return Array.isArray(readdirSync(directory))
-}
-
 const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
   const store: Migrations.IStore = {
     data: {}
