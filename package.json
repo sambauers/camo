@@ -1,6 +1,6 @@
 {
   "name": "@sambauers/camo",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "repository": {
     "type": "git",
     "url": "git://github.com/sambauers/camo.git"
@@ -12,8 +12,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": "v16.15.0",
-    "pnpm": "v7.1.5"
+    "node": "v16.15.0"
   },
   "bin": {
     "camo": "dist/bin/index.js"
