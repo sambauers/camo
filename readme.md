@@ -34,20 +34,11 @@ $ yarn add --dev @sambauers/camo
 $ pnpm add --save-dev @sambauers/camo
 ```
 
-### Add a migrate script to your `package.json`
+### Setting up CAMO in a project
 
-In your projects `package.json` add a `migrate` script in the `scripts`
-definitions:
+Refer to the [setup guides in the wiki](https://github.com/sambauers/camo/wiki#setup-guides).
 
-```json
-{
-  "scripts": {
-    "migrate": "camo"
-  }
-}
-```
-
-### Specify Contentful connection details
+### Specifying Contentful connection details
 
 CAMO will read `.env` files in your project using the pattern described by the
 [dotenv package](https://github.com/motdotla/dotenv).
@@ -83,7 +74,7 @@ object.
 Alternatively, you can specify these values on the command line itself through
 the equivalent command line options - see the CLI options in this document.
 
-### Set up and specify the local migrations directory
+### Specifying the local migrations directory
 
 The default directory to store local migrations scripts is a directory named
 `migrations` in your project's root directory.
