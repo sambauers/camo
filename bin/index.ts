@@ -348,7 +348,7 @@ command
 
   const migrationsBlock = block('Gathering local migrations to apply')
 
-  let applyRegistered = true
+  let applyRegistered = undefined
 
   if (typeof options.migrations === 'undefined') {
     migrationsBlock
