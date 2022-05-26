@@ -5,9 +5,7 @@ import inquirer from 'inquirer'
 import type * as Block from './types'
 import type * as Data from '../data/types'
 
-const VALID_BLOCK_LABELS: Array<Block.Label> = ['warning', 'error', 'abort', 'success']
-
-const block = (heading?: string, indent: number = 1): Block.IAPI => {
+const block = (heading?: string, indent = 1): Block.IAPI => {
   const store: Block.IStore = {
 		content: [],
     actions: {},
@@ -56,8 +54,7 @@ const block = (heading?: string, indent: number = 1): Block.IAPI => {
       data(rows, defaultCell)
         .setHeader(headers)
         .setFooter(footers)
-        .setAlignments(alignments)
-        [type]()
+        .setAlignments(alignments)[type]()
         .forEach((line) => {
           store.content.push({
             type: 'text',

@@ -38,6 +38,8 @@ $ pnpm add --save-dev @sambauers/camo
 
 Refer to the [setup guides in the wiki](https://github.com/sambauers/camo/wiki#setup-guides).
 
+## Contentful connection details
+
 ### Specifying Contentful connection details
 
 CAMO will read `.env` files in your project using the pattern described by the

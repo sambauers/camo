@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+// The hashbang above is a lie, until this is compiled to Javascript
+
 import 'dotenv/config'
 import { join } from 'path'
 import { Command, Option } from 'commander'
@@ -11,7 +13,10 @@ import exit from '../src/lib/program/exit'
 import block from '../src/api/block'
 import chalk from '../src/lib/program/chalk'
 import migrations from '../src/api/migrations'
-import contentfulMigration, { ContentfulMigrationError } from '../src/api/contentful-migration'
+import
+  contentfulMigration,
+  { ContentfulMigrationError }
+from '../src/api/contentful-migration'
 
 import type * as Migrations from '../src/api/migrations/types'
 import type * as Program from '../src/lib/program/types'
@@ -29,10 +34,10 @@ const localDirectory = safeLocalDirectory.startsWith('/')
 let migrationsAPI: Migrations.IAPI
 try {
   migrationsAPI = migrations({ localDirectory })
-} catch (e: any) {
+} catch (e) {
   exit({
     title: 'Could not initiate the migrations API.',
-    message: e.message
+    message: e instanceof Error ? e.message : 'Unknown'
   })
   process.exit(1)
 }
@@ -153,10 +158,10 @@ command
       contentTypeId: options.contentTypeId,
       contentTypeName: options.contentTypeName
     })
-  } catch (e: any) {
+  } catch (e) {
     exit({
       title: 'There was a problem connecting to Contentful.',
-      message: e.message
+      message: e instanceof Error ? e.message : 'Unknown'
     })
     process.exit(7)
   }
@@ -170,7 +175,7 @@ command
   let offerToCreateContentType = false
   try {
     await contentfulMigrationAPI.getContentType()
-  } catch (e: any) {
+  } catch (e) {
     if (
       e instanceof ContentfulMigrationError &&
       e.recover === 'createContentType'
@@ -179,7 +184,7 @@ command
     } else {
       exit({
         title: 'Could not retrieve the Contentful migration content type.',
-        message: e.message
+        message: e instanceof Error ? e.message : 'Unknown'
       })
       process.exit(8)
     }
@@ -191,7 +196,10 @@ command
   if (offerToCreateContentType) {
     contentTypeBlock.resume(
       'contentTypeRetrieval',
-      `Could not find content type "${options.contentTypeName}", the query took {seconds}s`
+      oneLine`
+        Could not find content type "${options.contentTypeName}", the query took
+        {seconds}s
+      `
     )
 
     if (!await contentTypeBlock.confirm(oneLine`
@@ -206,10 +214,10 @@ command
 
     try {
       await contentfulMigrationAPI.createContentType()
-    } catch (e: any) {
+    } catch (e) {
       exit({
         title: 'Could not create the Contentful migration content type.',
-        message: e.message
+        message: e instanceof Error ? e.message : 'Unknown'
       })
       process.exit(9)
     }
@@ -225,15 +233,18 @@ command
 
     try {
       registeredMigrationEntries = await contentfulMigrationAPI.getEntries()
-    } catch (e: any) {
+    } catch (e) {
       exit({
         title: 'Could not retrieve the Contentful migration entries.',
-        message: e.message
+        message: e instanceof Error ? e.message : 'Unknown'
       })
       process.exit(10)
     }
 
-    contentTypeBlock.resume('contentTypeRead', `Retrieved ${registeredMigrationEntries.length} entries in {seconds}s`)
+    contentTypeBlock.resume(
+      'contentTypeRead',
+      `Retrieved ${registeredMigrationEntries.length} entries in {seconds}s`
+    )
   }
   contentTypeBlock.print()
 
@@ -355,7 +366,9 @@ command
       .text('No migrations were supplied on the command line')
       .blank()
 
-    const unregisteredMigrations = migrationsAPI.getUnregistered({ list: 'filename' })
+    const unregisteredMigrations = migrationsAPI.getUnregistered({
+      list: 'filename'
+    })
 
     if (unregisteredMigrations.length > 0) {
       migrationsBlock
@@ -399,7 +412,10 @@ command
           rows: requestedButRegisteredMigrations.map((filename) => [filename])
         })
         .blank()
-        .text('You can choose to re-apply these migrations or remove them from the migration process.')
+        .text(oneLine`
+          You can choose to re-apply these migrations or remove them from the
+          migration process.
+        `)
         .print()
 
       if (await migrationsBlock.confirm(oneLine`
@@ -461,10 +477,10 @@ command
       targetMigrations.map((migration) => [migration.filename, migration.path]),
       options.dry
     )
-  } catch (e: any) {
+  } catch (e) {
     exit({
       title: 'There was a problem applying the Contentful migrations',
-      message: e.message
+      message: e instanceof Error ? e.message : 'Unknown'
     })
     process.exit(11)
   }

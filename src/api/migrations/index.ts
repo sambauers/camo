@@ -30,12 +30,16 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
 
       try {
         readdirSync(localDirectory)
-      } catch (e: any) {
+      } catch (e) {
+        const message = e instanceof Error
+          ? e.message
+          : 'Did not catch an error'
         throw new Error(stripIndent`
           The provided local migrations directory could not be read:
             ${localDirectory}
+
           The read error encountered was:
-            ${e.message}
+            ${message}
         `)
       }
 

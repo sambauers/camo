@@ -1,0 +1,5 @@
+# compilation output
+/dist
+
+# migrations testing directory
+/migrations

@@ -1,7 +1,7 @@
 import * as contentful from 'contentful-management'
 import type { MigrationFunction } from 'contentful-migration'
 import { runMigration } from 'contentful-migration'
-import { oneLine } from 'common-tags'
+import { oneLine, stripIndent } from 'common-tags'
 
 import type * as ContentfulMigration from './types'
 import { readFileSync, statSync } from 'fs'
@@ -142,7 +142,7 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
       let contentType: contentful.ContentType
       try {
         contentType = await store.client.getContentType(store.contentTypeId)
-      } catch (e: any) {
+      } catch (e) {
         throw new ContentfulMigrationError(
           'Could not find Contentful migration content type.',
           { recover: 'createContentType' }
@@ -196,7 +196,7 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
           .name('Name')
           .required(true)
           .validations([
-            { regexp: { pattern: '^[0-9]+\-[a-zA-Z0-9-]+\.[jt]s' } },
+            { regexp: { pattern: '^[0-9]+-[a-zA-Z0-9-]+.[jt]s' } },
             { unique: true }
           ])
 
@@ -318,10 +318,22 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
         content: { [store.locale]: content }
       }
 
-      const result = await store.client.createEntry(
-        store.contentTypeId,
-        { fields: localeFields }
-      )
+      try {
+        await store.client.createEntry(
+          store.contentTypeId,
+          { fields: localeFields }
+        )
+      } catch (e) {
+        const message = e instanceof Error
+          ? e.message
+          : 'Unknown'
+        throw new ContentfulMigrationError(stripIndent`
+          The Contentful entry could not be created.
+
+          The Contentful client error encountered was:
+            ${message}
+        `)
+      }
 
       return api
     },

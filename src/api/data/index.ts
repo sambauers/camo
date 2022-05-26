@@ -257,6 +257,13 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
         return dim ? chalk.dim(padded) : padded
       }
 
+      // These are only used when alignment is 'center'
+      const padBothLength = width - safeValue.length
+      const padStartLength = Math.floor(padBothLength / 2)
+      const padEndLength = padBothLength - padStartLength
+      const padStart = safeFillString.repeat(padStartLength - 1)
+      const padEnd = safeFillString.repeat(padEndLength - 1)
+
       let padded: string
       switch (alignment ?? 'left') {
         case 'left':
@@ -271,12 +278,6 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
           if (safeValue.length === width - 1) {
             return safeValue.concat(' ')
           }
-
-          const padBothLength = width - safeValue.length
-          const padStartLength = Math.floor(padBothLength / 2)
-          const padEndLength = padBothLength - padStartLength
-          const padStart = safeFillString.repeat(padStartLength - 1)
-          const padEnd = safeFillString.repeat(padEndLength - 1)
           padded = `${padStart} ${safeValue} ${padEnd}`
           break
       }

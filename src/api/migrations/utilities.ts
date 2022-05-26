@@ -6,7 +6,7 @@ type FileName = Migrations.IMigration['filename']
 export const isValidMigrationFilename = (
   filenameOrMigration: FileName | Migrations.IMigrationPartial
 ): boolean =>
-  /^[0-9]+\-[a-z0-9-]+\.[jt]s$/i.test(
+  /^[0-9]+-[a-z0-9-]+\.[jt]s$/i.test(
     typeof filenameOrMigration === 'string'
       ? filenameOrMigration
       : filenameOrMigration.filename
