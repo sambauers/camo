@@ -259,8 +259,8 @@ const data = (
       const padBothLength = width - safeValue.length
       const padStartLength = Math.floor(padBothLength / 2)
       const padEndLength = padBothLength - padStartLength
-      const padStart = safeFillString.repeat(padStartLength - 1)
-      const padEnd = safeFillString.repeat(padEndLength - 1)
+      const padStart = safeFillString.repeat(Math.max(0, padStartLength - 1))
+      const padEnd = safeFillString.repeat(Math.max(0, padEndLength - 1))
 
       let padded: string
       switch (alignment ?? 'left') {
