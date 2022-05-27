@@ -1,6 +1,6 @@
 {
   "name": "@sambauers/camo",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "repository": {
     "type": "git",
     "url": "git://github.com/sambauers/camo.git"
@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "release": "pnpm build && pnpm publish",
-    "build": "pnpm lint && rm -rf dist && tsc",
+    "build": "pnpm lint && rm -rf dist && tsc && rm dist/**/types.js",
     "lint": "eslint .",
     "dev": "ts-node bin/index.ts"
   },
