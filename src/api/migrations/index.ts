@@ -6,7 +6,7 @@ import {
   getMigrationId,
   isValidMigrationFilename,
 } from './utilities'
-import type * as Migrations from './types'
+import type * as Migrations from './index.d'
 import { stripIndent } from 'common-tags'
 
 const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {

@@ -1,4 +1,4 @@
-import type * as Data from './types'
+import type * as Data from './index.d'
 
 export const isDataCell = (
   maybeDataCell: unknown

@@ -1,5 +1,5 @@
 import { oneLine } from 'common-tags'
-import type * as Program from './types'
+import type * as Program from './index.d'
 
 type Name = keyof Program.IOptionInstances
 type Entry = [Name, Program.IOptionParameters]

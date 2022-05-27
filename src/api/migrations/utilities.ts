@@ -1,5 +1,5 @@
 import path from 'path'
-import type * as Migrations from './types'
+import type * as Migrations from './index.d'
 
 type FileName = Migrations.IMigration['filename']
 

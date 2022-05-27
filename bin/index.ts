@@ -17,9 +17,9 @@ import contentfulMigration, {
   ContentfulMigrationError,
 } from '../src/api/contentful-migration'
 
-import type * as Migrations from '../src/api/migrations/types'
-import type * as Program from '../src/lib/program/types'
-import type * as ContentfulMigration from '../src/api/contentful-migration/types'
+import type * as Migrations from '../src/api/migrations/index.d'
+import type * as Program from '../src/lib/program/index.d'
+import type * as ContentfulMigration from '../src/api/contentful-migration/index.d'
 
 const envLocalDirectory = process.env.CONTENTFUL_MIGRATION_LOCAL_DIRECTORY
 const safeLocalDirectory =

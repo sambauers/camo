@@ -1,6 +1,6 @@
 import { oneLine } from 'common-tags'
 
-import type * as Program from './types'
+import type * as Program from './index.d'
 import exit from './exit'
 
 type OmittedOptions = 'migrations' | 'list' | 'dry'

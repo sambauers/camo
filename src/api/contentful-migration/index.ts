@@ -3,7 +3,7 @@ import type { MigrationFunction } from 'contentful-migration'
 import { runMigration } from 'contentful-migration'
 import { oneLine, stripIndent } from 'common-tags'
 
-import type * as ContentfulMigration from './types'
+import type * as ContentfulMigration from './index.d'
 import { readFileSync, statSync } from 'fs'
 
 export class ContentfulMigrationError extends Error {
