@@ -14,10 +14,8 @@ export const isValidMigrationFilename = (
 
 export const getMigrationBasename = (
   filename: FileName
-): Migrations.IMigration['basename'] =>
-  path.basename(filename)
+): Migrations.IMigration['basename'] => path.basename(filename)
 
 export const getMigrationId = (
   filename: FileName
-): Migrations.IMigration['id'] =>
-  parseInt(filename.replace(/^(0-9+)/, '$1'))
+): Migrations.IMigration['id'] => parseInt(filename.replace(/^(0-9+)/, '$1'))

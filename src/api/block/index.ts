@@ -7,13 +7,13 @@ import type * as Data from '../data/types'
 
 const block = (heading?: string, indent = 1): Block.IAPI => {
   const store: Block.IStore = {
-		content: [],
+    content: [],
     actions: {},
     indent,
   }
 
   const api: Block.IAPI = {
-		heading: (text, { label, trim = true, indent } = {}) => {
+    heading: (text, { label, trim = true, indent } = {}) => {
       store.content.push({
         type: 'heading',
         label,
@@ -23,7 +23,7 @@ const block = (heading?: string, indent = 1): Block.IAPI => {
       })
       return api
     },
-    
+
     text: (text, { label, trim = true, indent } = {}) => {
       store.content.push({
         type: 'text',
@@ -34,10 +34,10 @@ const block = (heading?: string, indent = 1): Block.IAPI => {
       })
       return api
     },
-    
+
     blank: (indent) => api.text('', { indent }),
 
-    data: (type, unsafeData, { indent, alignments } =  {}) => {
+    data: (type, unsafeData, { indent, alignments } = {}) => {
       let headers: Data.UnsafeData
       let rows: Data.UnsafeData
       let footers: Data.UnsafeData
@@ -54,7 +54,8 @@ const block = (heading?: string, indent = 1): Block.IAPI => {
       data(rows, defaultCell)
         .setHeader(headers)
         .setFooter(footers)
-        .setAlignments(alignments)[type]()
+        .setAlignments(alignments)
+        [type]()
         .forEach((line) => {
           store.content.push({
             type: 'text',
@@ -95,7 +96,7 @@ const block = (heading?: string, indent = 1): Block.IAPI => {
       store.actions[id] = {
         id,
         timer,
-        seconds: 0
+        seconds: 0,
       }
 
       return api
@@ -106,11 +107,12 @@ const block = (heading?: string, indent = 1): Block.IAPI => {
       process.stdout.moveCursor(0, 0)
       process.stdout.clearLine(0)
       process.stdout.cursorTo(0)
-      const safeNotice = typeof notice === 'string' && notice !== ''
-        ? notice
-            .trim()
-            .replace(/\{seconds\}/g, String(store.actions[id].seconds))
-        : `Waited for ${store.actions[id].seconds}s`
+      const safeNotice =
+        typeof notice === 'string' && notice !== ''
+          ? notice
+              .trim()
+              .replace(/\{seconds\}/g, String(store.actions[id].seconds))
+          : `Waited for ${store.actions[id].seconds}s`
       const safeIndent = '  │ '.repeat(indent ?? store.indent)
       process.stdout.write(`${safeIndent}${safeNotice}\n`)
       return api
@@ -148,21 +150,17 @@ const block = (heading?: string, indent = 1): Block.IAPI => {
           name: 'confirmed',
           prefix: `${safeIndent}?`,
           message,
-        }
+        },
       ])
 
       return !!answer.confirmed
     },
 
-    abort: ({ indent } = {}) => api
-      .blank()
-      .text('', { label: 'abort', indent })
-      .finish(),
+    abort: ({ indent } = {}) =>
+      api.blank().text('', { label: 'abort', indent }).finish(),
 
-    complete: ({ indent } = {}) => api
-      .blank()
-      .text('', { label: 'success', indent })
-      .finish(),
+    complete: ({ indent } = {}) =>
+      api.blank().text('', { label: 'success', indent }).finish(),
 
     print: () => {
       store.content.forEach((line) => {
@@ -170,14 +168,11 @@ const block = (heading?: string, indent = 1): Block.IAPI => {
         const safeIndent = '  │ '.repeat(line.indent)
 
         let safeLine = trim ? line.text.trim() : line.text
-        safeLine = line.type === 'heading'
-          ? chalk.heading(safeLine)
-          : safeLine
+        safeLine = line.type === 'heading' ? chalk.heading(safeLine) : safeLine
 
         let safeLabel = api._label(line.label)
-        safeLabel = safeLabel === ''
-          ? ''
-          : safeLabel.concat(safeLine === '' ? '' : ' - ')
+        safeLabel =
+          safeLabel === '' ? '' : safeLabel.concat(safeLine === '' ? '' : ' - ')
 
         console.info(`${safeIndent}${safeLabel}${safeLine}`)
       })
@@ -189,12 +184,10 @@ const block = (heading?: string, indent = 1): Block.IAPI => {
       api.blank(0)
       api.print()
       return
-    }
+    },
   }
 
-  return typeof heading === 'string'
-    ? api.heading(heading, { indent: 0 })
-    : api
+  return typeof heading === 'string' ? api.heading(heading, { indent: 0 }) : api
 }
 
 export default block

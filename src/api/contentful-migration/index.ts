@@ -24,10 +24,10 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
   spaceId,
   environmentId,
   contentTypeId,
-  contentTypeName
+  contentTypeName,
 }) => {
   const store: ContentfulMigration.IStore = {}
-  
+
   const api: ContentfulMigration.IAPI = {
     setAccessToken: (accessToken) => {
       if (typeof accessToken !== 'string' || accessToken === '') {
@@ -91,10 +91,9 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
         )
       }
       if (typeof store.spaceId === 'undefined') {
-        throw new ContentfulMigrationError(
-          'No Contentful space ID is set.',
-          { recover: 'setSpaceId' }
-        )
+        throw new ContentfulMigrationError('No Contentful space ID is set.', {
+          recover: 'setSpaceId',
+        })
       }
       if (typeof store.environmentId === 'undefined') {
         throw new ContentfulMigrationError(
@@ -105,7 +104,7 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
 
       // Setup the Contentful client
       const queryClient = contentful.createClient({
-        accessToken: store.accessToken
+        accessToken: store.accessToken,
       })
       const querySpace = await queryClient.getSpace(store.spaceId)
       store.client = await querySpace.getEnvironment(store.environmentId)
@@ -160,10 +159,9 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
         )
       }
       if (typeof store.spaceId === 'undefined') {
-        throw new ContentfulMigrationError(
-          'No Contentful space ID is set.',
-          { recover: 'setSpaceId' }
-        )
+        throw new ContentfulMigrationError('No Contentful space ID is set.', {
+          recover: 'setSpaceId',
+        })
       }
       if (typeof store.environmentId === 'undefined') {
         throw new ContentfulMigrationError(
@@ -197,24 +195,28 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
           .required(true)
           .validations([
             { regexp: { pattern: '^[0-9]+-[a-zA-Z0-9-]+.[jt]s' } },
-            { unique: true }
+            { unique: true },
           ])
 
-        contentfulMigrations
-          .changeFieldControl('name', 'builtin', 'singleLine', {
-            helpText: 'The filename of the migration that was run.'
-          })
+        contentfulMigrations.changeFieldControl(
+          'name',
+          'builtin',
+          'singleLine',
+          { helpText: 'The filename of the migration that was run.' }
+        )
 
         contentfulMigrations
           .createField('content')
           .type('Text')
           .name('Content')
           .required(true)
-        
-        contentfulMigrations
-          .changeFieldControl('content', 'builtin', 'multipleLine', {
-            helpText: 'The migration function that was applied.'
-          })
+
+        contentfulMigrations.changeFieldControl(
+          'content',
+          'builtin',
+          'multipleLine',
+          { helpText: 'The migration function that was applied.' }
+        )
 
         contentfulMigrations.displayField('name')
       }
@@ -224,7 +226,7 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
         accessToken: store.accessToken,
         spaceId: store.spaceId,
         environmentId: store.environmentId,
-        yes: true
+        yes: true,
       })
 
       return api
@@ -253,7 +255,7 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
       const result = await store.client.getEntries({
         content_type: store.contentTypeId,
         order: 'sys.createdAt',
-        limit: 1000
+        limit: 1000,
       })
 
       // This tool doesn't page through the entire collection, so fail hard if
@@ -272,25 +274,25 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
       // This avoids some nasty type checking inside the map
       const locale = store.locale
 
-      return result.items.map<ContentfulMigration.IEntry>(
-        (item) => ({
-          name: item.fields.name[locale],
-          appliedAt: item.sys.createdAt,
-          appliedAtFormatted: (new Date(item.sys.createdAt))
-            .toLocaleString(locale, {
-              weekday: 'short',
-              day: '2-digit',
-              month: 'short',
-              year: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit',
-              second: '2-digit',
-              hour12: false,
-              timeZoneName: 'short'
-            }),
-          content: item.fields.content[locale]
-        })
-      )
+      return result.items.map<ContentfulMigration.IEntry>((item) => ({
+        name: item.fields.name[locale],
+        appliedAt: item.sys.createdAt,
+        appliedAtFormatted: new Date(item.sys.createdAt).toLocaleString(
+          locale,
+          {
+            weekday: 'short',
+            day: '2-digit',
+            month: 'short',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false,
+            timeZoneName: 'short',
+          }
+        ),
+        content: item.fields.content[locale],
+      }))
     },
 
     createEntry: async (name, content) => {
@@ -315,18 +317,15 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
 
       const localeFields = {
         name: { [store.locale]: name },
-        content: { [store.locale]: content }
+        content: { [store.locale]: content },
       }
 
       try {
-        await store.client.createEntry(
-          store.contentTypeId,
-          { fields: localeFields }
-        )
+        await store.client.createEntry(store.contentTypeId, {
+          fields: localeFields,
+        })
       } catch (e) {
-        const message = e instanceof Error
-          ? e.message
-          : 'Unknown'
+        const message = e instanceof Error ? e.message : 'Unknown'
         throw new ContentfulMigrationError(stripIndent`
           The Contentful entry could not be created.
 
@@ -385,7 +384,7 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
       }
 
       return api
-    }
+    },
   }
 
   return api

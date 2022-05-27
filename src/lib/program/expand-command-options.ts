@@ -22,7 +22,10 @@ const expandCommandOption = (tuple: Program.OptionTuple): Entry => {
   }
 
   const english = 'Contentful '.concat(
-    tuple[1].replace(/([A-Z])/g, ' $1').toLowerCase().replace(' id', ' ID')
+    tuple[1]
+      .replace(/([A-Z])/g, ' $1')
+      .toLowerCase()
+      .replace(' id', ' ID')
   )
 
   const envVar = 'CONTENTFUL_MIGRATION_'.concat(
@@ -31,9 +34,10 @@ const expandCommandOption = (tuple: Program.OptionTuple): Entry => {
 
   const fallback = tuple[3]
 
-  const helpDefaults = typeof fallback === 'string'
-    ? `, defaults to "${fallback}" if not defined anywhere`
-    : ''
+  const helpDefaults =
+    typeof fallback === 'string'
+      ? `, defaults to "${fallback}" if not defined anywhere`
+      : ''
 
   const help = oneLine`
     the target ${english} - over-rides the environment variable
@@ -49,8 +53,8 @@ const expandCommandOption = (tuple: Program.OptionTuple): Entry => {
       english,
       envVar,
       fallback,
-      help
-    }
+      help,
+    },
   ]
 }
 

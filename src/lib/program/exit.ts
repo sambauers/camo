@@ -5,7 +5,7 @@ interface IExitOptions {
   message?: string
 }
 
-const exit = ({ title,  message }: IExitOptions): void => {
+const exit = ({ title, message }: IExitOptions): void => {
   console.info('')
   const hasTitle = typeof title === 'string' && title !== ''
   console.error(`${chalk.error(' Error ')}${hasTitle ? ' - ' : ''}${title}`)

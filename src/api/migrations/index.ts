@@ -10,9 +10,7 @@ import type * as Migrations from './types'
 import { stripIndent } from 'common-tags'
 
 const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
-  const store: Migrations.IStore = {
-    data: {}
-  }
+  const store: Migrations.IStore = { data: {} }
 
   const api: Migrations.IAPI = {
     setLocalDirectory: (localDirectory) => {
@@ -31,9 +29,8 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
       try {
         readdirSync(localDirectory)
       } catch (e) {
-        const message = e instanceof Error
-          ? e.message
-          : 'Did not catch an error'
+        const message =
+          e instanceof Error ? e.message : 'Did not catch an error'
         throw new Error(stripIndent`
           The provided local migrations directory could not be read:
             ${localDirectory}
@@ -65,7 +62,7 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
         id: getMigrationId(filename),
         local,
         registered,
-        requested
+        requested,
       }
 
       if (local && typeof store.localDirectory === 'string') {
@@ -76,15 +73,12 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
         return expanded
       }
 
-      const {
-        appliedAt,
-        appliedAtFormatted
-      } = migration
+      const { appliedAt, appliedAtFormatted } = migration
 
       return {
         ...expanded,
         appliedAt,
-        appliedAtFormatted
+        appliedAtFormatted,
       }
     },
 
@@ -92,7 +86,7 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
       if (typeof base === 'undefined' && typeof migration === 'undefined') {
         return undefined
       }
-      
+
       if (typeof base === 'undefined') {
         return migration
       }
@@ -105,12 +99,12 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
         ...{
           filename: base.filename,
           basename: base.basename,
-          id: base.id
+          id: base.id,
         },
         ...{
           filename: migration.filename,
           basename: migration.basename,
-          id: migration.id
+          id: migration.id,
         },
         local: base.local || migration.local,
         registered: base.registered || migration.registered,
@@ -136,12 +130,12 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
         ...merged,
         ...{
           appliedAt: registeredBase.appliedAt,
-          appliedAtFormatted: registeredBase.appliedAtFormatted
+          appliedAtFormatted: registeredBase.appliedAtFormatted,
         },
         ...{
           appliedAt: registeredMigration.appliedAt,
-          appliedAtFormatted: registeredMigration.appliedAtFormatted
-        }
+          appliedAtFormatted: registeredMigration.appliedAtFormatted,
+        },
       }
     },
 
@@ -158,68 +152,65 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
 
       const data = Object.entries(store.data)
 
-      data.sort(
-        ([a], [b]) => {
-          if (a === b) {
-            return 0
-          }
-          if (a < b) {
-            return -1
-          }
-          return 1
+      data.sort(([a], [b]) => {
+        if (a === b) {
+          return 0
         }
-      )
+        if (a < b) {
+          return -1
+        }
+        return 1
+      })
 
       store.data = Object.fromEntries(data)
 
       return api
     },
 
-    getMigrations: (
-      ({ flags, list } = {}) => {
-        if (
-          (typeof flags === 'undefined' || flags === {} ) &&
-          (typeof list === 'undefined' || list === false)
-        ) {
-          return store.data
-        }
-
-        let entries = Object.entries(store.data)
-
-        if (typeof flags !== 'undefined') {
-          entries = entries.filter(
-            ([_filename, migration]) => {
-              const localFlagMatch = typeof flags.local === 'boolean'
-                ? flags.local === migration.local
-                : true
-
-              const registeredFlagMatch = typeof flags.registered === 'boolean'
-                ? flags.registered === migration.registered
-                : true
-
-              const requestedFlagMatch = typeof flags.requested === 'boolean'
-                ? flags.requested === migration.requested
-                : true
-
-              return localFlagMatch && registeredFlagMatch && requestedFlagMatch
-            }
-          )
-        }
-
-        if (typeof list === 'undefined' || list === false) {
-          return Object.fromEntries(entries)
-        }
-
-        if (list === true) {
-          return entries.map(([_filename, migration]) => migration)
-        }
-
-        return entries.map(
-          ([_filename, migration]) =>
-            migration[list as keyof Migrations.IMigration]
-        )
+    getMigrations: (({ flags, list } = {}) => {
+      if (
+        (typeof flags === 'undefined' || flags === {}) &&
+        (typeof list === 'undefined' || list === false)
+      ) {
+        return store.data
       }
-    ) as Migrations.IAPI['getMigrations'],
+
+      let entries = Object.entries(store.data)
+
+      if (typeof flags !== 'undefined') {
+        entries = entries.filter(([_filename, migration]) => {
+          const localFlagMatch =
+            typeof flags.local === 'boolean'
+              ? flags.local === migration.local
+              : true
+
+          const registeredFlagMatch =
+            typeof flags.registered === 'boolean'
+              ? flags.registered === migration.registered
+              : true
+
+          const requestedFlagMatch =
+            typeof flags.requested === 'boolean'
+              ? flags.requested === migration.requested
+              : true
+
+          return localFlagMatch && registeredFlagMatch && requestedFlagMatch
+        })
+      }
+
+      if (typeof list === 'undefined' || list === false) {
+        return Object.fromEntries(entries)
+      }
+
+      if (list === true) {
+        return entries.map(([_filename, migration]) => migration)
+      }
+
+      return entries.map(
+        ([_filename, migration]) =>
+          migration[list as keyof Migrations.IMigration]
+      )
+    }) as Migrations.IAPI['getMigrations'],
 
     setLocal: () => {
       if (typeof store.localDirectory === 'undefined') {
@@ -233,45 +224,47 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
       return api.mergeData(migrationFiles)
     },
 
-    getLocal: (({flags, list} = {}) => api.getMigrations({
-      flags: { ...flags, local: true },
-      list
-    })) as Migrations.IAPI['getLocal'],
+    getLocal: (({ flags, list } = {}) =>
+      api.getMigrations({
+        flags: { ...flags, local: true },
+        list,
+      })) as Migrations.IAPI['getLocal'],
 
     getLocalVariantList: () => {
       const local = api.getLocal({ list: true })
 
-      return local.flatMap(
-        (migration) => [
-          migration.filename,
-          migration.basename,
-          migration.id
-        ]
-      )
+      return local.flatMap((migration) => [
+        migration.filename,
+        migration.basename,
+        migration.id,
+      ])
     },
 
-    setRegistered: async (migrations) => api.mergeData(
-      migrations
-        .filter(isValidMigrationFilename)
-        .map(
-          ({ filename, appliedAt, appliedAtFormatted }) => api.expandMigration({
-            filename,
-            appliedAt,
-            appliedAtFormatted,
-            registered: true
-          })
-        )
-    ),
+    setRegistered: async (migrations) =>
+      api.mergeData(
+        migrations
+          .filter(isValidMigrationFilename)
+          .map(({ filename, appliedAt, appliedAtFormatted }) =>
+            api.expandMigration({
+              filename,
+              appliedAt,
+              appliedAtFormatted,
+              registered: true,
+            })
+          )
+      ),
 
-    getRegistered: (({flags, list} = {}) => api.getMigrations({
-      flags: { ...flags, registered: true },
-      list
-    })) as Migrations.IAPI['getRegistered'],
+    getRegistered: (({ flags, list } = {}) =>
+      api.getMigrations({
+        flags: { ...flags, registered: true },
+        list,
+      })) as Migrations.IAPI['getRegistered'],
 
-    getUnregistered: (({flags, list} = {}) => api.getMigrations({
-      flags: { ...flags, local: true, registered: false },
-      list
-    })) as Migrations.IAPI['getUnregistered'],
+    getUnregistered: (({ flags, list } = {}) =>
+      api.getMigrations({
+        flags: { ...flags, local: true, registered: false },
+        list,
+      })) as Migrations.IAPI['getUnregistered'],
 
     setRequested: (requested) => {
       if (typeof requested === 'undefined') {
@@ -283,15 +276,16 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
         return api
       }
 
-      const filenames = requested.map((variant) => {
-        const found = local.find(
-          ([filename, migration]) =>
-            filename === variant ||
+      const filenames = requested
+        .map((variant) => {
+          const found = local.find(
+            ([filename, migration]) =>
+              filename === variant ||
               migration.basename === variant ||
               String(migration.id) === String(variant)
-        )
-        return found?.[0]
-      })
+          )
+          return found?.[0]
+        })
         .filter<string>(
           (filename): filename is string => typeof filename !== 'undefined'
         )
@@ -303,17 +297,16 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
       )
     },
 
-    getRequested: (({flags, list} = {}) => api.getMigrations({
-      flags: { ...flags, requested: true },
-      list
-    })) as Migrations.IAPI['getRequested'],
+    getRequested: (({ flags, list } = {}) =>
+      api.getMigrations({
+        flags: { ...flags, requested: true },
+        list,
+      })) as Migrations.IAPI['getRequested'],
 
-    getData: () => store.data
+    getData: () => store.data,
   }
 
-  return api
-    .setLocalDirectory(localDirectory)
-    .setLocal()
+  return api.setLocalDirectory(localDirectory).setLocal()
 }
 
 export default migrations

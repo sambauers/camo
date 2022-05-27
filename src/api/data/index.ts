@@ -5,7 +5,10 @@ import arrayTrim from '../../lib/utilities/array-trim'
 import type * as Data from './types'
 import { isDataCell, isDataRow, isUnsafeData } from './guards'
 
-const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI => {
+const data = (
+  unsafeData?: Data.UnsafeData,
+  defaultCell?: Data.Cell
+): Data.IAPI => {
   const store: Data.IStore = {
     data: [[]],
     width: 0,
@@ -34,7 +37,7 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
         api._setCellWidths()
         return api
       }
-      
+
       if (isDataCell(unsafeData)) {
         store.data = [[unsafeData]]
         store.width = 1
@@ -51,9 +54,7 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
         return api
       }
 
-      store.data = unsafeData.map(
-        (row) => isDataCell(row) ? [row] : row
-      )
+      store.data = unsafeData.map((row) => (isDataCell(row) ? [row] : row))
       store.width = Math.max(...store.data.map((row) => row.length))
       store.height = store.data.length
       api._fillCells()
@@ -112,42 +113,40 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
         : transposedTable
     }) as Data.IAPI['transpose'],
 
-    _stringifyCell: (value) => typeof value === 'undefined' || value === ''
-      ? String(store.defaultCell ?? '')
-      : String(value).trim(),
+    _stringifyCell: (value) =>
+      typeof value === 'undefined' || value === ''
+        ? String(store.defaultCell ?? '')
+        : String(value).trim(),
 
     _fillCells: () => {
-      store.data = store.data.map(
-        (row, index) => {
-          const value = index < store.headerCount
-            ? ''
-            : store.defaultCell
-          return arrayPad(row, 'end', store.width, value)
-        }
-      )
+      store.data = store.data.map((row, index) => {
+        const value = index < store.headerCount ? '' : store.defaultCell
+        return arrayPad(row, 'end', store.width, value)
+      })
     },
 
     _setCellWidths: () => {
-      const stringifiedData = store.data
-        .map((row) => row.map(api._stringifyCell))
-
-      store.cellWidths.rowMax = stringifiedData.map(
-        (row) => Math.max(...row.map((cell) => cell.length))
+      const stringifiedData = store.data.map((row) =>
+        row.map(api._stringifyCell)
       )
 
-      const columnWidths = stringifiedData
-        .reduce<Array<Array<number>>>(
-          (accumulator, current) => {
-            current.forEach((cell, column) => {
-              accumulator[column] ??= []
-              accumulator[column].push(cell.length)
-            })
-            return accumulator
-          },
-          []
-        )
-      store.cellWidths.columnMax = columnWidths
-        .map((widths) => Math.max(...widths))
+      store.cellWidths.rowMax = stringifiedData.map((row) =>
+        Math.max(...row.map((cell) => cell.length))
+      )
+
+      const columnWidths = stringifiedData.reduce<Array<Array<number>>>(
+        (accumulator, current) => {
+          current.forEach((cell, column) => {
+            accumulator[column] ??= []
+            accumulator[column].push(cell.length)
+          })
+          return accumulator
+        },
+        []
+      )
+      store.cellWidths.columnMax = columnWidths.map((widths) =>
+        Math.max(...widths)
+      )
     },
 
     cellWidths: () => store.cellWidths,
@@ -175,9 +174,10 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
         return api
       }
 
-      const safeHeaders = unsafeHeader
-        .map((row) => isDataCell(row) ? [row] : row)
-        store.headerCount = safeHeaders.length
+      const safeHeaders = unsafeHeader.map((row) =>
+        isDataCell(row) ? [row] : row
+      )
+      store.headerCount = safeHeaders.length
       api.set([...safeHeaders, ...store.data])
       return api
     },
@@ -205,8 +205,8 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
         return api
       }
 
-      const safeFooters = unsafeFooter.map(
-        (row) => isDataCell(row) ? [row] : row
+      const safeFooters = unsafeFooter.map((row) =>
+        isDataCell(row) ? [row] : row
       )
       store.footerCount = safeFooters.length
       api.set([...store.data, ...safeFooters])
@@ -215,9 +215,8 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
 
     setAlignment: (alignment, column) => {
       if (typeof column !== 'number') {
-        store.alignments = alignment === 'left'
-          ? []
-          : new Array(store.width).fill(alignment)
+        store.alignments =
+          alignment === 'left' ? [] : new Array(store.width).fill(alignment)
         return api
       }
 
@@ -244,9 +243,8 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
 
     _padCell: (alignment, value, width, fillString = ' ', dim = true) => {
       const safeValue = api._stringifyCell(value)
-      const safeFillString = typeof fillString === 'string'
-        ? fillString.trim()[0] ?? ' '
-        : ' '
+      const safeFillString =
+        typeof fillString === 'string' ? fillString.trim()[0] ?? ' ' : ' '
 
       if (safeValue.length === width) {
         return safeValue
@@ -292,7 +290,7 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
     _slice: () => [
       store.data.slice(0, store.headerCount),
       store.data.slice(store.headerCount, store.height - store.footerCount),
-      store.data.slice(store.height - store.footerCount)
+      store.data.slice(store.height - store.footerCount),
     ],
 
     definitions: () => {
@@ -303,8 +301,8 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
           return []
         }
 
-        return headers.map(
-          (values) => values
+        return headers.map((values) =>
+          values
             .map((value, column) => {
               let buffer = ' '
               switch (column) {
@@ -319,7 +317,7 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
               const safeValue = api._padCell(
                 column === 0 ? 'right' : store.alignments[column],
                 value,
-                store.cellWidths.columnMax[column],
+                store.cellWidths.columnMax[column]
               )
 
               return chalk.dim(buffer.concat(safeValue))
@@ -330,36 +328,36 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
 
       const joinedHeaders = joinHeaders(headers)
 
-      const joinedRows = rows.length > 0
-        ? rows.map(
-            (values) => values
-              .map((value, column) => {
-                let buffer = ' '
-                switch (column) {
-                  case 0:
-                    buffer = ''
-                    break
-                  case 1:
-                    buffer = ': '
-                    break
-                }
+      const joinedRows =
+        rows.length > 0
+          ? rows.map((values) =>
+              values
+                .map((value, column) => {
+                  let buffer = ' '
+                  switch (column) {
+                    case 0:
+                      buffer = ''
+                      break
+                    case 1:
+                      buffer = ': '
+                      break
+                  }
 
-                const safeFillString = column === 0 || store.width === 2
-                  ? ' '
-                  : '…'
+                  const safeFillString =
+                    column === 0 || store.width === 2 ? ' ' : '…'
 
-                const safeValue = api._padCell(
-                  column === 0 ? 'right' : store.alignments[column],
-                  value,
-                  store.cellWidths.columnMax[column],
-                  safeFillString
-                )
+                  const safeValue = api._padCell(
+                    column === 0 ? 'right' : store.alignments[column],
+                    value,
+                    store.cellWidths.columnMax[column],
+                    safeFillString
+                  )
 
-                return buffer.concat(safeValue)
-              })
-              .join('')
-          )
-        : []
+                  return buffer.concat(safeValue)
+                })
+                .join('')
+            )
+          : []
 
       const joinedFooters = joinHeaders(footers)
 
@@ -374,8 +372,8 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
           return []
         }
 
-        return headers.map(
-          (values) => values
+        return headers.map((values) =>
+          values
             .map((value, column) => {
               const buffer = column === 0 ? '  ' : ' '
               const safeValue = api._padCell(
@@ -393,12 +391,10 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
 
       const joinedHeaders = joinHeaders(headers)
 
-      const joinedRows = rows.map(
-        (values) => values
+      const joinedRows = rows.map((values) =>
+        values
           .map((value, column) => {
-            const buffer = column === 0
-              ? chalk.dim('• ')
-              : ' '
+            const buffer = column === 0 ? chalk.dim('• ') : ' '
             const safeValue = api._padCell(
               store.alignments[column],
               value,
@@ -420,8 +416,8 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
 
       const gridLine = (pattern: string): string => {
         const [left, buffer, center, right] = pattern.split('')
-        const body = store.cellWidths
-          .columnMax.map((width) => buffer.repeat(width + 2))
+        const body = store.cellWidths.columnMax
+          .map((width) => buffer.repeat(width + 2))
           .join(center)
         return chalk.dim(left.concat(body, right))
       }
@@ -432,58 +428,73 @@ const data = (unsafeData?: Data.UnsafeData, defaultCell?: Data.Cell): Data.IAPI 
       const gridFooter = gridLine('╞═╪╡')
       const gridBottom = gridLine('└─┴┘')
 
-      const joinedHeaders = headers.length > 0
-        ? headers.flatMap((values, row) => {
-            const body = values.map((value, column) => api._padCell(
-              store.alignments[column],
-              value,
-              store.cellWidths.columnMax[column],
-            )).join(' │ ')
+      const joinedHeaders =
+        headers.length > 0
+          ? headers.flatMap((values, row) => {
+              const body = values
+                .map((value, column) =>
+                  api._padCell(
+                    store.alignments[column],
+                    value,
+                    store.cellWidths.columnMax[column]
+                  )
+                )
+                .join(' │ ')
 
-            return [
-              chalk.dim('│ '.concat(body, ' │')),
-              row === headers.length - 1 ? gridHeader : gridMiddle
-            ]
-          })
-        : []
+              return [
+                chalk.dim('│ '.concat(body, ' │')),
+                row === headers.length - 1 ? gridHeader : gridMiddle,
+              ]
+            })
+          : []
 
-      const joinedRows = rows.length > 0
-        ? rows.flatMap((values, row) => {
-            const body = values.map((value, column) => api._padCell(
-              store.alignments[column],
-              value,
-              store.cellWidths.columnMax[column],
-            )).join(chalk.dim(' │ '))
+      const joinedRows =
+        rows.length > 0
+          ? rows.flatMap((values, row) => {
+              const body = values
+                .map((value, column) =>
+                  api._padCell(
+                    store.alignments[column],
+                    value,
+                    store.cellWidths.columnMax[column]
+                  )
+                )
+                .join(chalk.dim(' │ '))
 
-            const line = chalk.dim('│ ').concat(body, chalk.dim(' │'))
+              const line = chalk.dim('│ ').concat(body, chalk.dim(' │'))
 
-            return row === rows.length - 1 ? line : [line, gridMiddle]
-          })
-        : []
+              return row === rows.length - 1 ? line : [line, gridMiddle]
+            })
+          : []
 
-      const joinedFooters = footers.length > 0
-        ? footers.flatMap((values, row) => {
-            const body = values.map((value, column) => api._padCell(
-              store.alignments[column],
-              value,
-              store.cellWidths.columnMax[column],
-            )).join(' │ ')
+      const joinedFooters =
+        footers.length > 0
+          ? footers.flatMap((values, row) => {
+              const body = values
+                .map((value, column) =>
+                  api._padCell(
+                    store.alignments[column],
+                    value,
+                    store.cellWidths.columnMax[column]
+                  )
+                )
+                .join(' │ ')
 
-            return [
-              row === 0 ? gridFooter : gridMiddle,
-              chalk.dim('│ '.concat(body, ' │')),
-            ]
-          })
-        : []
+              return [
+                row === 0 ? gridFooter : gridMiddle,
+                chalk.dim('│ '.concat(body, ' │')),
+              ]
+            })
+          : []
 
       return [
         gridTop,
         ...joinedHeaders,
         ...joinedRows,
         ...joinedFooters,
-        gridBottom
+        gridBottom,
       ]
-    }
+    },
   }
 
   return api.defaultCell(defaultCell).set(unsafeData)

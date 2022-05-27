@@ -12,7 +12,8 @@ export type IFlags = Record<Flags, boolean> & {
 }
 export type IMigration = IVariants & IFlags
 
-export type IMigrationPartial = Pick<IMigration, 'filename'> & Partial<Omit<IMigration, 'filename'>>
+export type IMigrationPartial = Pick<IMigration, 'filename'> &
+  Partial<Omit<IMigration, 'filename'>>
 
 export type IMigrations = Record<string, IMigration>
 
@@ -33,20 +34,19 @@ type GetMigrationsFlags<F extends undefined | keyof IFlags = undefined> =
   F extends undefined
     ? Partial<IFlags>
     : [F] extends [keyof IFlags]
-      ? Partial<Omit<IFlags, F>>
-      : undefined
+    ? Partial<Omit<IFlags, F>>
+    : undefined
 
 type GetMigrationsReturnType<L extends boolean | keyof IMigration = false> =
   L extends false
     ? IMigrations
     : L extends true
-      ? Array<IMigration>
-      : [L] extends [keyof IMigration]
-        ? Array<IPropertyTypes<L>>
-        : undefined
+    ? Array<IMigration>
+    : [L] extends [keyof IMigration]
+    ? Array<IPropertyTypes<L>>
+    : undefined
 
-type ExpandMigrationParameter =
-  Pick<IMigration, 'filename'> &
+type ExpandMigrationParameter = Pick<IMigration, 'filename'> &
   Partial<Omit<IMigration, 'filename' | 'basename' | 'id'>>
 
 export interface IAPI {
@@ -58,26 +58,32 @@ export interface IAPI {
     migration?: IMigration
   ) => IMigration | undefined
   mergeData: (migrations: Array<IMigration>) => IAPI
-  getMigrations: <L extends boolean | keyof IMigration = false>(
-    options?: { flags?: GetMigrationsFlags, list?: L }
-  ) => GetMigrationsReturnType<L>
+  getMigrations: <L extends boolean | keyof IMigration = false>(options?: {
+    flags?: GetMigrationsFlags
+    list?: L
+  }) => GetMigrationsReturnType<L>
   setLocal: () => IAPI
-  getLocal: <L extends boolean | keyof IMigration = false>(
-    options?: { flags?: GetMigrationsFlags<'local'>, list?: L }
-  ) => GetMigrationsReturnType<L>
-  getLocalVariantList: () =>
-    Array<IPropertyTypes<'filename' | 'basename' | 'id'>>
+  getLocal: <L extends boolean | keyof IMigration = false>(options?: {
+    flags?: GetMigrationsFlags<'local'>
+    list?: L
+  }) => GetMigrationsReturnType<L>
+  getLocalVariantList: () => Array<
+    IPropertyTypes<'filename' | 'basename' | 'id'>
+  >
   setRegistered: (migrations: Array<IMigrationPartial>) => Promise<IAPI>
-  getRegistered: <L extends boolean | keyof IMigration = false>(
-    options?: { flags?: GetMigrationsFlags<'registered'>, list?: L }
-  ) => GetMigrationsReturnType<L>
-  getUnregistered: <L extends boolean | keyof IMigration = false>(
-    options?: { flags?: GetMigrationsFlags<'local' | 'registered'>, list?: L }
-  ) => GetMigrationsReturnType<L>
+  getRegistered: <L extends boolean | keyof IMigration = false>(options?: {
+    flags?: GetMigrationsFlags<'registered'>
+    list?: L
+  }) => GetMigrationsReturnType<L>
+  getUnregistered: <L extends boolean | keyof IMigration = false>(options?: {
+    flags?: GetMigrationsFlags<'local' | 'registered'>
+    list?: L
+  }) => GetMigrationsReturnType<L>
   setRequested: (requested?: Array<string | number>) => IAPI
-  getRequested: <L extends boolean | keyof IMigration = false>(
-    options?: { flags?: GetMigrationsFlags<'requested'>, list?: L }
-  ) => GetMigrationsReturnType<L>
+  getRequested: <L extends boolean | keyof IMigration = false>(options?: {
+    flags?: GetMigrationsFlags<'requested'>
+    list?: L
+  }) => GetMigrationsReturnType<L>
   getData: () => IMigrations
 }
 

@@ -30,18 +30,9 @@ export interface IAPI {
     data: DataParameter,
     options?: TableOptionsParameter
   ) => IAPI
-  definitions: (
-    data: DataParameter,
-    options?: TableOptionsParameter
-  ) => IAPI
-  list: (
-    data: DataParameter,
-    options?: TableOptionsParameter
-  ) => IAPI
-  table: (
-    data: DataParameter,
-    options?: TableOptionsParameter
-  ) => IAPI
+  definitions: (data: DataParameter, options?: TableOptionsParameter) => IAPI
+  list: (data: DataParameter, options?: TableOptionsParameter) => IAPI
+  table: (data: DataParameter, options?: TableOptionsParameter) => IAPI
   wait: (id: string, prefix?: string, options?: { indent?: number }) => IAPI
   resume: (id: string, notice?: string, options?: { indent?: number }) => IAPI
   setIndent: (level: number) => IAPI

@@ -14,7 +14,7 @@ const ensureNonEmptyOption = (
   const fallbacks = [
     options[name],
     process.env[programOptions[name].envVar],
-    programOptions[name].fallback
+    programOptions[name].fallback,
   ]
 
   const safeOption = fallbacks.find(
@@ -31,7 +31,7 @@ const ensureNonEmptyOption = (
     message: oneLine`
       Specify using the ${programOptions[name].longOption} command line
       option or the environment variable ${programOptions[name].envVar}
-    `
+    `,
   })
   process.exit(code)
 }

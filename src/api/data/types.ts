@@ -33,12 +33,24 @@ export interface IAPI {
   get: () => IStore['data']
   width: () => IStore['width']
   height: () => IStore['height']
-  transpose(
-    { save, header, footer }: { save?: true, header?: boolean, footer?: boolean }
-  ): IAPI
-  transpose(
-    { save, header, footer }: { save: false, header?: boolean, footer?: boolean }
-  ): SafeData
+  transpose({
+    save,
+    header,
+    footer,
+  }: {
+    save?: true
+    header?: boolean
+    footer?: boolean
+  }): IAPI
+  transpose({
+    save,
+    header,
+    footer,
+  }: {
+    save: false
+    header?: boolean
+    footer?: boolean
+  }): SafeData
   _stringifyCell: (value: Cell) => string
   _fillCells: () => void
   _setCellWidths: () => void
@@ -47,7 +59,13 @@ export interface IAPI {
   setFooter: (unsafeFooter: UnsafeData) => IAPI
   setAlignment: (alignment: CellAlignment, column?: number) => IAPI
   setAlignments: (alignments?: Array<CellAlignment | undefined>) => IAPI
-  _padCell: (alignment: CellAlignment, value: Cell, width: number, fillString?: string, dim?: boolean) => string
+  _padCell: (
+    alignment: CellAlignment,
+    value: Cell,
+    width: number,
+    fillString?: string,
+    dim?: boolean
+  ) => string
   _slice: () => [SafeData, SafeData, SafeData]
   definitions: () => Array<string>
   list: () => Array<string>

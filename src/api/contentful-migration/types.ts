@@ -32,7 +32,10 @@ export interface IAPI {
   createContentType: () => Promise<IAPI>
   getEntries: () => Promise<Array<IEntry>>
   createEntry: (name: string, content: string) => Promise<IAPI>
-  runMigrations: (migrations: Array<[string, string | undefined]>, dryRun?: boolean) => Promise<IAPI>
+  runMigrations: (
+    migrations: Array<[string, string | undefined]>,
+    dryRun?: boolean
+  ) => Promise<IAPI>
 }
 
 export type APIBuilder = (options: IParameters) => Promise<IAPI>

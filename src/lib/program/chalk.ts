@@ -6,5 +6,5 @@ export default {
   error: chalk.rgb(255, 255, 255).bgRedBright,
   warning: chalk.rgb(255, 255, 255).bgRgb(255, 100, 0),
   success: chalk.rgb(255, 255, 255).bgGreen,
-  emphasise: chalk.underline, 
+  emphasise: chalk.underline,
 }

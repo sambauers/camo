@@ -13,10 +13,9 @@ import exit from '../src/lib/program/exit'
 import block from '../src/api/block'
 import chalk from '../src/lib/program/chalk'
 import migrations from '../src/api/migrations'
-import
-  contentfulMigration,
-  { ContentfulMigrationError }
-from '../src/api/contentful-migration'
+import contentfulMigration, {
+  ContentfulMigrationError,
+} from '../src/api/contentful-migration'
 
 import type * as Migrations from '../src/api/migrations/types'
 import type * as Program from '../src/lib/program/types'
@@ -37,7 +36,7 @@ try {
 } catch (e) {
   exit({
     title: 'Could not initiate the migrations API.',
-    message: e instanceof Error ? e.message : 'Unknown'
+    message: e instanceof Error ? e.message : 'Unknown',
   })
   process.exit(1)
 }
@@ -50,7 +49,7 @@ const commandOptions = expandCommandOptions([
   ['value', 'contentTypeName', 'n', 'Contentful Migration'],
   ['variadic', 'migrations', 'm'],
   ['variadic', 'list', 'l'],
-  ['boolean', 'dry', 'd']
+  ['boolean', 'dry', 'd'],
 ])
 
 const command = new Command()
@@ -69,10 +68,7 @@ command
       ${commandOptions.accessToken.envVar}
     `
   )
-  .option(
-    commandOptions.spaceId.allOptions,
-    commandOptions.spaceId.help
-  )
+  .option(commandOptions.spaceId.allOptions, commandOptions.spaceId.help)
   .option(
     commandOptions.environmentId.allOptions,
     commandOptions.environmentId.help,
@@ -110,14 +106,14 @@ command
         migration file names or IDs to look up. Categories are: local,
         registered, or unregistered
       `
-    )
-      .conflicts(['migrations'])
+    ).conflicts(['migrations'])
   )
   .option(
     commandOptions.dry.allOptions,
     'executes a "dry run" which does not actually execute migrations'
   )
 
+// Begin processing
 ;(async () => {
   command.parse()
 
@@ -146,8 +142,10 @@ command
     .finish()
 
   // Connect to Contentful using provided access details
-  const connectionBlock = block('Connecting to Contentful')
-    .wait('connection', 'Connecting')
+  const connectionBlock = block('Connecting to Contentful').wait(
+    'connection',
+    'Connecting'
+  )
 
   let contentfulMigrationAPI: ContentfulMigration.IAPI
   try {
@@ -156,20 +154,21 @@ command
       spaceId: options.spaceId,
       environmentId: options.environmentId,
       contentTypeId: options.contentTypeId,
-      contentTypeName: options.contentTypeName
+      contentTypeName: options.contentTypeName,
     })
   } catch (e) {
     exit({
       title: 'There was a problem connecting to Contentful.',
-      message: e instanceof Error ? e.message : 'Unknown'
+      message: e instanceof Error ? e.message : 'Unknown',
     })
     process.exit(7)
   }
   connectionBlock.resume('connection', 'Connecting took {seconds}s').finish()
 
   // Retrieve the migrations that are registered in Contentful
-  const contentTypeBlock = block('Retrieving Contentful migrations')
-    .wait('contentTypeRetrieval')
+  const contentTypeBlock = block('Retrieving Contentful migrations').wait(
+    'contentTypeRetrieval'
+  )
 
   // Find the Contentful migration content type
   let offerToCreateContentType = false
@@ -184,7 +183,7 @@ command
     } else {
       exit({
         title: 'Could not retrieve the Contentful migration content type.',
-        message: e instanceof Error ? e.message : 'Unknown'
+        message: e instanceof Error ? e.message : 'Unknown',
       })
       process.exit(8)
     }
@@ -202,10 +201,12 @@ command
       `
     )
 
-    if (!await contentTypeBlock.confirm(oneLine`
-      Do you wish to create the Contentful migration content type in this
-      Contentful space and environment?
-    `)) {
+    if (
+      !(await contentTypeBlock.confirm(oneLine`
+        Do you wish to create the Contentful migration content type in this
+        Contentful space and environment?
+      `))
+    ) {
       contentTypeBlock.abort()
       process.exit(0)
     }
@@ -217,7 +218,7 @@ command
     } catch (e) {
       exit({
         title: 'Could not create the Contentful migration content type.',
-        message: e instanceof Error ? e.message : 'Unknown'
+        message: e instanceof Error ? e.message : 'Unknown',
       })
       process.exit(9)
     }
@@ -236,7 +237,7 @@ command
     } catch (e) {
       exit({
         title: 'Could not retrieve the Contentful migration entries.',
-        message: e instanceof Error ? e.message : 'Unknown'
+        message: e instanceof Error ? e.message : 'Unknown',
       })
       process.exit(10)
     }
@@ -248,11 +249,13 @@ command
   }
   contentTypeBlock.print()
 
-  migrationsAPI.setRegistered(registeredMigrationEntries.map((entry) => ({
-    filename: entry.name,
-    appliedAt: entry.appliedAt,
-    appliedAtFormatted: entry.appliedAtFormatted
-  })))
+  migrationsAPI.setRegistered(
+    registeredMigrationEntries.map((entry) => ({
+      filename: entry.name,
+      appliedAt: entry.appliedAt,
+      appliedAtFormatted: entry.appliedAtFormatted,
+    }))
+  )
 
   if (typeof options.list !== 'undefined') {
     let listTypes = 'all migrations'
@@ -292,11 +295,11 @@ command
           return false
         }
 
-        return options.list.some(
-          (id) => [
+        return options.list.some((id) =>
+          [
             migration.filename,
             migration.basename,
-            String(migration.id)
+            String(migration.id),
           ].includes(id)
         )
       })
@@ -307,19 +310,16 @@ command
         migration.appliedAtFormatted,
       ])
 
-    contentTypeBlock
-      .blank()
-      .text(`Getting status of ${listTypes}…`)
+    contentTypeBlock.blank().text(`Getting status of ${listTypes}…`)
 
     if (rows.length < 1) {
-      contentTypeBlock.text(
-        'No matching migrations found.',
-        { label: 'warning' }
-      )
+      contentTypeBlock.text('No matching migrations found.', {
+        label: 'warning',
+      })
     } else {
       contentTypeBlock.table({
         headers: ['Name', 'Local', 'Registered', 'Applied'],
-        rows
+        rows,
       })
     }
     contentTypeBlock.finish()
@@ -329,7 +329,7 @@ command
 
   const registeredMigrationsWithoutLocal = migrationsAPI.getRegistered({
     flags: { local: false },
-    list: 'filename'
+    list: 'filename',
   })
 
   if (registeredMigrationsWithoutLocal.length > 0) {
@@ -344,12 +344,12 @@ command
       )
       .list({
         headers: 'name',
-        rows: registeredMigrationsWithoutLocal.map((filename) => [filename])
+        rows: registeredMigrationsWithoutLocal.map((filename) => [filename]),
       })
       .blank()
       .print()
 
-    if (!await contentTypeBlock.confirm('Do you wish to proceed anyway?')) {
+    if (!(await contentTypeBlock.confirm('Do you wish to proceed anyway?'))) {
       contentTypeBlock.abort()
       process.exit(0)
     }
@@ -367,18 +367,20 @@ command
       .blank()
 
     const unregisteredMigrations = migrationsAPI.getUnregistered({
-      list: 'filename'
+      list: 'filename',
     })
 
     if (unregisteredMigrations.length > 0) {
       migrationsBlock
-        .text(oneLine`
-          The following local migrations have ${chalk.emphasise('not')} been
-          registered in Contentful and will be applied:
-        `)
+        .text(
+          oneLine`
+            The following local migrations have ${chalk.emphasise('not')} been
+            registered in Contentful and will be applied:
+          `
+        )
         .list({
           headers: 'name',
-          rows: unregisteredMigrations.map((filename) => [filename])
+          rows: unregisteredMigrations.map((filename) => [filename]),
         })
     } else {
       migrationsBlock
@@ -395,7 +397,7 @@ command
 
     const requestedButRegisteredMigrations = migrationsAPI.getRequested({
       flags: { registered: true },
-      list: 'filename'
+      list: 'filename',
     })
 
     if (requestedButRegisteredMigrations.length > 0) {
@@ -409,18 +411,22 @@ command
         )
         .list({
           headers: 'name',
-          rows: requestedButRegisteredMigrations.map((filename) => [filename])
+          rows: requestedButRegisteredMigrations.map((filename) => [filename]),
         })
         .blank()
-        .text(oneLine`
-          You can choose to re-apply these migrations or remove them from the
-          migration process.
-        `)
+        .text(
+          oneLine`
+            You can choose to re-apply these migrations or remove them from the
+            migration process.
+          `
+        )
         .print()
 
-      if (await migrationsBlock.confirm(oneLine`
-        Do you wish to remove these migrations from the migration process?
-      `)) {
+      if (
+        await migrationsBlock.confirm(oneLine`
+          Do you wish to remove these migrations from the migration process?
+        `)
+      ) {
         applyRegistered = false
       }
 
@@ -429,7 +435,7 @@ command
 
     const requestedMigrations = migrationsAPI.getRequested({
       flags: { registered: applyRegistered },
-      list: 'filename'
+      list: 'filename',
     })
 
     if (requestedMigrations.length > 0) {
@@ -437,14 +443,13 @@ command
         .text('The following local migrations will be applied:')
         .list({
           headers: 'name',
-          rows: requestedMigrations.map((filename) => [filename])
+          rows: requestedMigrations.map((filename) => [filename]),
         })
     } else {
       migrationsBlock
-        .text(
-          'No local migrations match the requested migrations',
-          { label: 'warning' }
-        )
+        .text('No local migrations match the requested migrations', {
+          label: 'warning',
+        })
         .abort()
 
       process.exit(0)
@@ -453,24 +458,24 @@ command
 
   migrationsBlock.blank().print()
   if (
-    !await migrationsBlock.confirm('Do you wish to proceed with the migration?')
+    !(await migrationsBlock.confirm(
+      'Do you wish to proceed with the migration?'
+    ))
   ) {
     migrationsBlock.abort()
     process.exit(0)
   }
   migrationsBlock.finish()
 
-  const migrateBlock = block('Applying migrations')
-    .blank()
-    .blank(0)
-    .print()
+  const migrateBlock = block('Applying migrations').blank().blank(0).print()
 
-  const targetMigrations = typeof options.migrations === 'undefined'
-    ? migrationsAPI.getUnregistered({ list: true })
-    : migrationsAPI.getRequested({
-        flags: { registered: applyRegistered },
-        list: true
-      })
+  const targetMigrations =
+    typeof options.migrations === 'undefined'
+      ? migrationsAPI.getUnregistered({ list: true })
+      : migrationsAPI.getRequested({
+          flags: { registered: applyRegistered },
+          list: true,
+        })
 
   try {
     await contentfulMigrationAPI.runMigrations(
@@ -480,7 +485,7 @@ command
   } catch (e) {
     exit({
       title: 'There was a problem applying the Contentful migrations',
-      message: e instanceof Error ? e.message : 'Unknown'
+      message: e instanceof Error ? e.message : 'Unknown',
     })
     process.exit(11)
   }

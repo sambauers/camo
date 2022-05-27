@@ -29,20 +29,22 @@ const arrayTrim = <T>(
 
   if (trimEnd) {
     let complete = false
-    copy = copy.reduceRight<Array<T>>((accumulator, current) => {
-      if (complete) {
+    copy = copy
+      .reduceRight<Array<T>>((accumulator, current) => {
+        if (complete) {
+          accumulator.push(current)
+          return accumulator
+        }
+
+        if (isFalsy(current)) {
+          return accumulator
+        }
+
+        complete = true
         accumulator.push(current)
         return accumulator
-      }
-
-      if (isFalsy(current)) {
-        return accumulator
-      }
-
-      complete = true
-      accumulator.push(current)
-      return accumulator
-    }, []).reverse()
+      }, [])
+      .reverse()
   }
 
   return copy
