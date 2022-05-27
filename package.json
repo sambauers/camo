@@ -23,7 +23,7 @@
   ],
   "scripts": {
     "release": "pnpm build && pnpm publish",
-    "build": "pnpm lint && rm -rf dist && tsc && rm dist/**/types.js",
+    "build": "pnpm lint && rm -rf dist && tsc",
     "lint": "eslint .",
     "dev": "ts-node bin/index.ts"
   },
