@@ -5,6 +5,9 @@ const arrayPad = <T>(
   fill: T
 ): Array<T> => {
   const copy = [...original]
+  if (length <= original.length) {
+    return copy
+  }
   copy.splice(
     position === 'start' ? 0 : original.length,
     0,
