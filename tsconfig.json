@@ -4,6 +4,10 @@
     "bin/*.ts",
     "src/**/*.ts"
   ],
+  "exclude": [
+    "**/__fixtures__/*",
+    "**/__tests__/*"
+  ],
   "compilerOptions": {
     "outDir": "./dist"
   }
