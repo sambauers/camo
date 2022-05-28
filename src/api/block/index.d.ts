@@ -1,4 +1,4 @@
-import type * as Data from '../data/types'
+import type * as Data from '../data/index.d'
 
 export type Label = 'warning' | 'error' | 'abort' | 'success'
 
