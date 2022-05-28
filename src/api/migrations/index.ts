@@ -41,7 +41,7 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
       }
 
       store.localDirectory = localDirectory
-      return api
+      return api.unsetLocal().setLocal()
     },
 
     getLocalDirectory: () => {
@@ -65,8 +65,8 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
         requested,
       }
 
-      if (local && typeof store.localDirectory === 'string') {
-        expanded.path = join(store.localDirectory, filename)
+      if (local) {
+        expanded.path = join(store.localDirectory ?? '', filename)
       }
 
       if (!registered) {
@@ -112,31 +112,20 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
       }
 
       if (merged.local) {
-        merged.path = store.localDirectory?.concat(merged.filename)
-      }
-
-      if (merged.local && typeof store.localDirectory === 'string') {
-        merged.path = join(store.localDirectory, merged.filename)
+        merged.path = join(store.localDirectory ?? '', merged.filename)
       }
 
       if (!merged.registered) {
+        delete merged.appliedAt
+        delete merged.appliedAtFormatted
         return merged
+      } else {
+        merged.appliedAt = migration.appliedAt ?? base.appliedAt
+        merged.appliedAtFormatted =
+          migration.appliedAtFormatted ?? base.appliedAtFormatted
       }
 
-      const registeredBase = base
-      const registeredMigration = migration
-
-      return {
-        ...merged,
-        ...{
-          appliedAt: registeredBase.appliedAt,
-          appliedAtFormatted: registeredBase.appliedAtFormatted,
-        },
-        ...{
-          appliedAt: registeredMigration.appliedAt,
-          appliedAtFormatted: registeredMigration.appliedAtFormatted,
-        },
-      }
+      return merged
     },
 
     mergeData: (migrations) => {
@@ -240,6 +229,14 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
       ])
     },
 
+    unsetLocal: () => {
+      api.getLocal({ list: 'filename' }).forEach((filename) => {
+        delete store.data[filename]
+      })
+
+      return api
+    },
+
     setRegistered: async (migrations) =>
       api.mergeData(
         migrations
@@ -306,7 +303,7 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
     getData: () => store.data,
   }
 
-  return api.setLocalDirectory(localDirectory).setLocal()
+  return api.setLocalDirectory(localDirectory)
 }
 
 export default migrations

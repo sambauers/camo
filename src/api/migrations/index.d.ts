@@ -67,6 +67,7 @@ export interface IAPI {
     flags?: GetMigrationsFlags<'local'>
     list?: L
   }) => GetMigrationsReturnType<L>
+  unsetLocal: () => IAPI
   getLocalVariantList: () => Array<
     IPropertyTypes<'filename' | 'basename' | 'id'>
   >
