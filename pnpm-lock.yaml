@@ -8,7 +8,7 @@ specifiers:
   '@typescript-eslint/eslint-plugin': ^5.26.0
   '@typescript-eslint/parser': ^5.26.0
   chalk: 4.1.2
-  commander: 9.2.0
+  commander: 9.3.0
   common-tags: 1.8.2
   contentful-management: 10.6.0
   contentful-migration: 4.9.0
@@ -23,7 +23,7 @@ specifiers:
 
 dependencies:
   chalk: 4.1.2
-  commander: 9.2.0
+  commander: 9.3.0
   common-tags: 1.8.2
   contentful-management: 10.6.0
   contentful-migration: 4.9.0
@@ -568,8 +568,8 @@ packages:
       delayed-stream: 1.0.0
     dev: false
 
-  /commander/9.2.0:
-    resolution: {integrity: sha512-e2i4wANQiSXgnrBlIatyHtP1odfUp0BbV5Y5nEGbxtIrStkEOAAzCUirvLBNXHLr7kwLvJl6V+4V3XV9x7Wd9w==}
+  /commander/9.3.0:
+    resolution: {integrity: sha512-hv95iU5uXPbK83mjrJKuZyFM/LBAoCV/XhVGkS5Je6tl7sxr6A0ITMw5WoRV46/UaJ46Nllm3Xt7IaJhXTIkzw==}
     engines: {node: ^12.20.0 || >=14}
     dev: false
 
