@@ -5,7 +5,9 @@
 import 'dotenv/config'
 import { join } from 'path'
 import { Command, Option } from 'commander'
-import { oneLine } from 'common-tags'
+import { oneLine, stripIndent } from 'common-tags'
+
+import packageJson from '../package.json'
 
 import expandCommandOptions from '../src/lib/program/expand-command-options'
 import ensureNonEmptyOption from '../src/lib/program/ensure-non-empty-option'
@@ -55,9 +57,14 @@ const commandOptions = expandCommandOptions([
 const command = new Command()
 
 command
-  .name('Contentful Active Migration Organiser (CAMO)')
-  .description('Applies migrations to the target Contentful space')
-  .version('1.0.0')
+  .name('camo')
+  .description(
+    stripIndent`
+      ${chalk.emphasise(packageJson.displayName)}
+      ${packageJson.description}
+    `
+  )
+  .version(packageJson.version)
 
 command
   .option(
