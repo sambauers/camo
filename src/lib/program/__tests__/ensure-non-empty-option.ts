@@ -76,7 +76,6 @@ describe('lib', () => {
       })
 
       it('exits if option is not present and no fallback deafult exists', () => {
-        console.log(process.env.CONTENTFUL_MIGRATION_SPACE_ID)
         expect(
           ensureNonEmptyOption(
             { ...MOCK_OPTION_INSTANCES },
