@@ -1,5 +1,8 @@
 # Contentful Active Migration Organiser
 
+[![Test (Jest)](https://github.com/sambauers/camo/actions/workflows/test-jest.yml/badge.svg)](https://github.com/sambauers/camo/actions/workflows/test-jest.yml)
+[![Lint (ESLInt)](https://github.com/sambauers/camo/actions/workflows/lint-eslint.yml/badge.svg)](https://github.com/sambauers/camo/actions/workflows/lint-eslint.yml)
+
 Contentful Active Migration Organiser (CAMO) is a command line tool inspired by
 [Ruby on Rails' Active Record migration](https://guides.rubyonrails.org/active_record_migrations.html)
 methodology. It is designed to make the management of Contentful schema changes
