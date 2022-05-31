@@ -22,7 +22,7 @@ describe('lib', () => {
             envVar: 'CONTENTFUL_MIGRATION_ACCESS_TOKEN',
             fallback: undefined,
             help: 'the target Contentful access token - over-rides the environment variable CONTENTFUL_MIGRATION_ACCESS_TOKEN',
-          }
+          },
         })
       })
 
@@ -37,7 +37,7 @@ describe('lib', () => {
             envVar: 'CONTENTFUL_MIGRATION_ENVIRONMENT_ID',
             fallback: 'master',
             help: 'the target Contentful environment ID - over-rides the environment variable CONTENTFUL_MIGRATION_ENVIRONMENT_ID, defaults to "master" if not defined anywhere',
-          }
+          },
         })
       })
 
@@ -52,7 +52,7 @@ describe('lib', () => {
             envVar: 'CONTENTFUL_MIGRATION_LIST',
             fallback: undefined,
             help: 'the target Contentful list - over-rides the environment variable CONTENTFUL_MIGRATION_LIST',
-          }
+          },
         })
       })
 
@@ -67,7 +67,7 @@ describe('lib', () => {
             envVar: 'CONTENTFUL_MIGRATION_DRY',
             fallback: undefined,
             help: 'the target Contentful dry - over-rides the environment variable CONTENTFUL_MIGRATION_DRY',
-          }
+          },
         })
       })
 
