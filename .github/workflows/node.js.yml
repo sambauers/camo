@@ -21,5 +21,6 @@ jobs:
       with:
         node-version-file: '.nvmrc'
         cache: 'pnpm'
+    - run: chmod a-r ./src/api/migrations/__fixtures__/migrations-unreadable
     - run: pnpm install --frozen-lockfile
     - run: pnpm test
