@@ -9,6 +9,7 @@ import { oneLine, stripIndent } from 'common-tags'
 
 import packageJson from '../package.json'
 
+import getErrorMessage from '../src/lib/utilities/get-error-message'
 import expandCommandOptions from '../src/lib/program/expand-command-options'
 import ensureNonEmptyOption from '../src/lib/program/ensure-non-empty-option'
 import exit from '../src/lib/program/exit'
@@ -38,7 +39,7 @@ try {
 } catch (e) {
   exit({
     title: 'Could not initiate the migrations API.',
-    message: e instanceof Error ? e.message : 'Unknown',
+    message: getErrorMessage(e),
   })
   process.exit(1)
 }
@@ -166,7 +167,7 @@ command
   } catch (e) {
     exit({
       title: 'There was a problem connecting to Contentful.',
-      message: e instanceof Error ? e.message : 'Unknown',
+      message: getErrorMessage(e),
     })
     process.exit(7)
   }
@@ -190,7 +191,7 @@ command
     } else {
       exit({
         title: 'Could not retrieve the Contentful migration content type.',
-        message: e instanceof Error ? e.message : 'Unknown',
+        message: getErrorMessage(e),
       })
       process.exit(8)
     }
@@ -225,7 +226,7 @@ command
     } catch (e) {
       exit({
         title: 'Could not create the Contentful migration content type.',
-        message: e instanceof Error ? e.message : 'Unknown',
+        message: getErrorMessage(e),
       })
       process.exit(9)
     }
@@ -244,7 +245,7 @@ command
     } catch (e) {
       exit({
         title: 'Could not retrieve the Contentful migration entries.',
-        message: e instanceof Error ? e.message : 'Unknown',
+        message: getErrorMessage(e),
       })
       process.exit(10)
     }
@@ -492,7 +493,7 @@ command
   } catch (e) {
     exit({
       title: 'There was a problem applying the Contentful migrations',
-      message: e instanceof Error ? e.message : 'Unknown',
+      message: getErrorMessage(e),
     })
     process.exit(11)
   }

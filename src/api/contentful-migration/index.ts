@@ -1,10 +1,12 @@
+import { readFileSync, statSync } from 'fs'
+
 import * as contentful from 'contentful-management'
 import type { MigrationFunction } from 'contentful-migration'
 import { runMigration } from 'contentful-migration'
 import { oneLine, stripIndent } from 'common-tags'
 
+import getErrorMessage from '../../lib/utilities/get-error-message'
 import type * as ContentfulMigration from './index.d'
-import { readFileSync, statSync } from 'fs'
 
 export class ContentfulMigrationError extends Error {
   public recover?: string
@@ -325,12 +327,11 @@ const contentfulMigration: ContentfulMigration.APIBuilder = async ({
           fields: localeFields,
         })
       } catch (e) {
-        const message = e instanceof Error ? e.message : 'Unknown'
         throw new ContentfulMigrationError(stripIndent`
           The Contentful entry could not be created.
 
           The Contentful client error encountered was:
-            ${message}
+            ${getErrorMessage(e)}
         `)
       }
 

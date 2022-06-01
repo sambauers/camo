@@ -1,16 +1,20 @@
 import { join } from 'path'
 import { readdirSync, statSync } from 'fs'
+import { stripIndent } from 'common-tags'
 
+import getErrorMessage from '../../lib/utilities/get-error-message'
 import {
   getMigrationBasename,
   getMigrationId,
   isValidMigrationFilename,
 } from './utilities'
 import type * as Migrations from './index.d'
-import { stripIndent } from 'common-tags'
 
-const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
-  const store: Migrations.IStore = { data: {} }
+const migrations: Migrations.APIBuilder = ({ localDirectory }) => {
+  const store: Migrations.IStore = {
+    localDirectory: '',
+    data: {},
+  }
 
   const api: Migrations.IAPI = {
     setLocalDirectory: (localDirectory) => {
@@ -29,14 +33,12 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
       try {
         readdirSync(localDirectory)
       } catch (e) {
-        const message =
-          e instanceof Error ? e.message : 'Did not catch an error'
         throw new Error(stripIndent`
           The provided local migrations directory could not be read:
             ${localDirectory}
 
           The read error encountered was:
-            ${message}
+            ${getErrorMessage(e)}
         `)
       }
 
@@ -66,7 +68,7 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
       }
 
       if (local) {
-        expanded.path = join(store.localDirectory ?? '', filename)
+        expanded.path = join(store.localDirectory, filename)
       }
 
       if (!registered) {
@@ -112,7 +114,7 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
       }
 
       if (merged.local) {
-        merged.path = join(store.localDirectory ?? '', merged.filename)
+        merged.path = join(store.localDirectory, merged.filename)
       }
 
       if (!merged.registered) {
@@ -142,9 +144,7 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
       const data = Object.entries(store.data)
 
       data.sort(([a], [b]) => {
-        if (a === b) {
-          return 0
-        }
+        // logically a will never equal b
         if (a < b) {
           return -1
         }
@@ -202,7 +202,7 @@ const migrations: Migrations.APIBuilder = ({ localDirectory } = {}) => {
     }) as Migrations.IAPI['getMigrations'],
 
     setLocal: () => {
-      if (typeof store.localDirectory === 'undefined') {
+      if (store.localDirectory === '') {
         throw new Error('No local migrations directory is set.')
       }
 

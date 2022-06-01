@@ -22,12 +22,12 @@ export type IPropertyTypes<K extends keyof IMigration = never> = {
 }[K]
 
 export interface IStore {
-  localDirectory?: string
+  localDirectory: string
   data: IMigrations
 }
 
 interface IParameters {
-  localDirectory?: IStore['localDirectory']
+  localDirectory: string
 }
 
 type GetMigrationsFlags<F extends undefined | keyof IFlags = undefined> =
@@ -88,4 +88,4 @@ export interface IAPI {
   getData: () => IMigrations
 }
 
-export type APIBuilder = (options?: IParameters) => IAPI
+export type APIBuilder = (options: IParameters) => IAPI
