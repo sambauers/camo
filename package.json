@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": "v16.15.0"
+    "node": "16.15.1"
   },
   "bin": {
     "camo": "dist/bin/index.js"
