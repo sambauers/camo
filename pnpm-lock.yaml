@@ -12,7 +12,7 @@ specifiers:
   commander: 9.3.0
   common-tags: 1.8.2
   contentful-management: 10.6.0
-  contentful-migration: 4.9.0
+  contentful-migration: 4.9.1
   dotenv: 16.0.1
   eslint: 8.16.0
   eslint-config-prettier: 8.5.0
@@ -29,7 +29,7 @@ dependencies:
   commander: 9.3.0
   common-tags: 1.8.2
   contentful-management: 10.6.0
-  contentful-migration: 4.9.0
+  contentful-migration: 4.9.1
   dotenv: 16.0.1
   inquirer: 8.2.4
 
@@ -1464,8 +1464,8 @@ packages:
       - debug
     dev: false
 
-  /contentful-migration/4.9.0:
-    resolution: {integrity: sha512-n07YWDsVTIrNA4Uibug+qo6ofuiiFmnaisBmDrP+V2zzc2RX89KVGQwtZ1o0zBy0EmkdUdBZxaiftzwK7dyYbg==}
+  /contentful-migration/4.9.1:
+    resolution: {integrity: sha512-qEPeYGnsxc65eqPoIFFhdmCkbx9o6nv797Ar+QkwCnIVyXOKYMlD+i6s21hAGyzrVePxl3UNbvAxJwdmKYiyDw==}
     engines: {node: '>=8.0.0'}
     hasBin: true
     dependencies:
@@ -1544,7 +1544,7 @@ packages:
       ms: 2.1.2
 
   /decamelize/1.2.0:
-    resolution: {integrity: sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=}
+    resolution: {integrity: sha512-z2S+W9X73hAUUki+N+9Za2lBlun89zigOyGrsax+KUQ6wKW4ZoWpEYBkGhQjwAjjDCkWxhY0VKEhk8wzY7F5cA==}
     engines: {node: '>=0.10.0'}
     dev: false
 
@@ -2807,7 +2807,7 @@ packages:
       p-locate: 4.1.0
 
   /lodash.deburr/4.1.0:
-    resolution: {integrity: sha1-3bG7s+8HRYwBd7oH3hRCLLAz/5s=}
+    resolution: {integrity: sha512-m/M1U1f3ddMCs6Hq2tAsYThTBDaAKFDX3dwDo97GEYzamXi9SqUpjWi/Rrj/gf3X2n8ktwgZrlP1z6E3v/IExQ==}
     dev: false
 
   /lodash.isplainobject/4.0.6:
