@@ -1,3 +1,5 @@
+![CAMO](https://raw.githubusercontent.com/sambauers/camo/main/logo/camo.svg)
+
 # Contentful Active Migration Organiser
 
 [![Test (Jest)](https://github.com/sambauers/camo/actions/workflows/test-jest.yml/badge.svg)](https://github.com/sambauers/camo/actions/workflows/test-jest.yml)
