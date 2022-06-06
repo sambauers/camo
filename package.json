@@ -34,7 +34,7 @@
     "chalk": "4.1.2",
     "commander": "9.3.0",
     "common-tags": "1.8.2",
-    "contentful-management": "10.6.1",
+    "contentful-management": "10.6.2",
     "contentful-migration": "4.9.1",
     "dotenv": "16.0.1",
     "inquirer": "8.2.4"
