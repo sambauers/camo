@@ -26,7 +26,7 @@
   "scripts": {
     "release": "pnpm build && pnpm publish",
     "build": "pnpm lint && pnpm test && rm -rf dist && tsc",
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "eslint .",
     "dev": "ts-node bin/index.ts"
   },
