@@ -1,4 +1,4 @@
-![CAMO](https://raw.githubusercontent.com/sambauers/camo/main/logo/camo.svg)
+![CAMO](https://raw.githubusercontent.com/sambauers/camo/main/assets/camo-logo.svg)
 
 # Contentful Active Migration Organiser
 
