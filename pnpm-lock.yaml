@@ -13,7 +13,7 @@ specifiers:
   chalk: 4.1.2
   commander: 9.3.0
   common-tags: 1.8.2
-  contentful-management: 10.6.2
+  contentful-management: 10.6.3
   contentful-migration: 4.9.1
   dotenv: 16.0.1
   eslint: 8.17.0
@@ -30,7 +30,7 @@ dependencies:
   chalk: 4.1.2
   commander: 9.3.0
   common-tags: 1.8.2
-  contentful-management: 10.6.2
+  contentful-management: 10.6.3
   contentful-migration: 4.9.1
   dotenv: 16.0.1
   inquirer: 8.2.4
@@ -1460,8 +1460,8 @@ packages:
     resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
     dev: true
 
-  /contentful-management/10.6.2:
-    resolution: {integrity: sha512-Cyn3f1CIm0DR/9VAm0PQJzTbhknlZlz+G1KYo3chgG/7ug3VyCJQ3Scdu14mzjJNhxO7epquIZUqaewklXUROg==}
+  /contentful-management/10.6.3:
+    resolution: {integrity: sha512-1tzQM1VeJi1KGiaE7vWhIla79XwlwIrmPd6+BUw2LG/0ar6azeU1uvO6oQxH4azVN3D5k2XmshRE2OvRIJJ6Xw==}
     engines: {node: '>=14'}
     dependencies:
       '@types/json-patch': 0.0.30
