@@ -31,7 +31,6 @@
     "dev": "ts-node bin/index.ts"
   },
   "dependencies": {
-    "chalk": "4.1.2",
     "commander": "9.3.0",
     "common-tags": "1.8.2",
     "contentful-management": "10.6.2",

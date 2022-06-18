@@ -10,7 +10,6 @@ specifiers:
   '@types/prettier': 2.6.3
   '@typescript-eslint/eslint-plugin': 5.28.0
   '@typescript-eslint/parser': 5.28.0
-  chalk: 4.1.2
   commander: 9.3.0
   common-tags: 1.8.2
   contentful-management: 10.6.2
@@ -27,7 +26,6 @@ specifiers:
   typescript: 4.7.3
 
 dependencies:
-  chalk: 4.1.2
   commander: 9.3.0
   common-tags: 1.8.2
   contentful-management: 10.6.2
