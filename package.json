@@ -36,7 +36,7 @@
     "contentful-management": "10.6.3",
     "contentful-migration": "4.9.1",
     "dotenv": "16.0.1",
-    "inquirer": "8.2.4"
+    "inquirer": "9.0.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "1.0.3",
