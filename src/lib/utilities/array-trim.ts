@@ -1,4 +1,4 @@
-import isFalsy from './is-falsy'
+import isFalsy from './is-falsy.js'
 
 const arrayTrim = <T>(
   original: Array<T>,

@@ -1,7 +1,7 @@
 import { oneLine } from 'common-tags'
 
-import type * as Program from './index.d'
-import exit from './exit'
+import type * as Program from './index.d.js'
+import exit from './exit.js'
 
 type OmittedOptions = 'migrations' | 'list' | 'dry'
 

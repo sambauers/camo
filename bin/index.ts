@@ -2,27 +2,26 @@
 
 // The hashbang above is a lie, until this is compiled to Javascript
 
+import { join } from 'node:path'
 import 'dotenv/config'
-import { join } from 'path'
 import { Command, Option } from 'commander'
 import { oneLine, stripIndent } from 'common-tags'
 
-import packageJson from '../package.json'
-
-import getErrorMessage from '../src/lib/utilities/get-error-message'
-import expandCommandOptions from '../src/lib/program/expand-command-options'
-import ensureNonEmptyOption from '../src/lib/program/ensure-non-empty-option'
-import exit from '../src/lib/program/exit'
-import block from '../src/api/block'
-import chalk from '../src/lib/program/chalk'
-import migrations from '../src/api/migrations'
+import getErrorMessage from '../src/lib/utilities/get-error-message.js'
+import expandCommandOptions from '../src/lib/program/expand-command-options.js'
+import ensureNonEmptyOption from '../src/lib/program/ensure-non-empty-option.js'
+import exit from '../src/lib/program/exit.js'
+import block from '../src/api/block/index.js'
+import chalk from '../src/lib/program/chalk.js'
+import migrations from '../src/api/migrations/index.js'
 import contentfulMigration, {
   ContentfulMigrationError,
-} from '../src/api/contentful-migration'
+} from '../src/api/contentful-migration/index.js'
+import programVars from '../src/lib/program/vars.js'
 
-import type * as Migrations from '../src/api/migrations/index.d'
-import type * as Program from '../src/lib/program/index.d'
-import type * as ContentfulMigration from '../src/api/contentful-migration/index.d'
+import type * as Migrations from '../src/api/migrations/index.d.js'
+import type * as Program from '../src/lib/program/index.d.js'
+import type * as ContentfulMigration from '../src/api/contentful-migration/index.d.js'
 
 const envLocalDirectory = process.env.CONTENTFUL_MIGRATION_LOCAL_DIRECTORY
 const safeLocalDirectory =
@@ -61,11 +60,11 @@ command
   .name('camo')
   .description(
     stripIndent`
-      ${chalk.emphasise(packageJson.displayName)}
-      ${packageJson.description}
+      ${chalk.emphasise(programVars.displayName)}
+      ${programVars.description}
     `
   )
-  .version(packageJson.version)
+  .version(programVars.version)
 
 command
   .option(

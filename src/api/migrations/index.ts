@@ -1,14 +1,14 @@
-import { join } from 'path'
-import { readdirSync, statSync } from 'fs'
+import { join } from 'node:path'
+import { readdirSync, statSync } from 'node:fs'
 import { stripIndent } from 'common-tags'
 
-import getErrorMessage from '../../lib/utilities/get-error-message'
+import getErrorMessage from '../../lib/utilities/get-error-message.js'
 import {
   getMigrationBasename,
   getMigrationId,
   isValidMigrationFilename,
-} from './utilities'
-import type * as Migrations from './index.d'
+} from './utilities.js'
+import type * as Migrations from './index.d.js'
 
 const migrations: Migrations.APIBuilder = ({ localDirectory }) => {
   const store: Migrations.IStore = {

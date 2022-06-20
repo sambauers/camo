@@ -1,9 +1,9 @@
-import chalk from '../../lib/program/chalk'
-import data from '../data'
-import { isUnsafeData } from '../data/guards'
+import chalk from '../../lib/program/chalk.js'
+import data from '../data/index.js'
+import { isUnsafeData } from '../data/guards.js'
 import inquirer from 'inquirer'
-import type * as Block from './index.d'
-import type * as Data from '../data/index.d'
+import type * as Block from './index.d.js'
+import type * as Data from '../data/index.d.js'
 
 const block = (heading?: string, indent = 1): Block.IAPI => {
   const store: Block.IStore = {

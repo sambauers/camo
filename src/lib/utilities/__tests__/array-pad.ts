@@ -1,4 +1,4 @@
-import arrayPad from '../array-pad'
+import arrayPad from '../array-pad.js'
 
 describe('lib', () => {
   describe('utilities', () => {

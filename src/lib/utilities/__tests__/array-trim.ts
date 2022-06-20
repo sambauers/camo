@@ -1,4 +1,4 @@
-import arrayTrim from '../array-trim'
+import arrayTrim from '../array-trim.js'
 
 const TRIMABLE = [
   '',

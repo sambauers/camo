@@ -1,7 +1,7 @@
 {
   "extends": "@tsconfig/node16/tsconfig.json",
   "include": [
-    "bin/*.ts",
+    "bin/index.ts",
     "src/**/*.ts"
   ],
   "exclude": [
@@ -9,8 +9,8 @@
     "**/__tests__/*"
   ],
   "compilerOptions": {
+    "module": "es2022",
     "outDir": "./dist",
-    "removeComments": true,
-    "resolveJsonModule": true
+    "removeComments": true
   }
 }

@@ -1,12 +1,12 @@
-import { readFileSync, statSync } from 'fs'
+import { readFileSync, statSync } from 'node:fs'
 
-import * as contentful from 'contentful-management'
+import contentful from 'contentful-management'
 import type { MigrationFunction } from 'contentful-migration'
 import { runMigration } from 'contentful-migration'
 import { oneLine, stripIndent } from 'common-tags'
 
-import getErrorMessage from '../../lib/utilities/get-error-message'
-import type * as ContentfulMigration from './index.d'
+import getErrorMessage from '../../lib/utilities/get-error-message.js'
+import type * as ContentfulMigration from './index.d.js'
 
 export class ContentfulMigrationError extends Error {
   public recover?: string

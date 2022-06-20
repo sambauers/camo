@@ -2,7 +2,7 @@
   "name": "@sambauers/camo",
   "displayName": "Contentful Active Migration Organiser (CAMO)",
   "description": "Applies and provides status for migrations associated with the target Contentful space.",
-  "version": "1.0.17",
+  "version": "1.1.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/sambauers/camo.git"
@@ -16,19 +16,22 @@
   "engines": {
     "node": "v16.15.1"
   },
+  "type": "module",
   "bin": {
-    "camo": "dist/bin/index.js"
+    "camo": "bin/index.js"
   },
   "files": [
     "license.md",
-    "dist/**/*"
+    "bin/**/*",
+    "src/**/*"
   ],
   "scripts": {
-    "release": "pnpm build && pnpm publish",
+    "copy-release-files": "ts-node --esm bin/copy-release-files.ts",
+    "release": "pnpm build && pnpm copy-release-files && pnpm publish dist",
     "build": "pnpm lint && pnpm test && rm -rf dist && tsc",
     "test": "jest --coverage",
     "lint": "eslint .",
-    "dev": "ts-node bin/index.ts"
+    "dev": "ts-node --esm bin/index.ts"
   },
   "dependencies": {
     "commander": "9.3.0",
@@ -36,7 +39,7 @@
     "contentful-management": "10.6.3",
     "contentful-migration": "4.9.1",
     "dotenv": "16.0.1",
-    "inquirer": "8.2.4"
+    "inquirer": "9.0.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "1.0.3",

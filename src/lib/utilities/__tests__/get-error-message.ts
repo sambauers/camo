@@ -1,4 +1,4 @@
-import getErrorMessage from '../get-error-message'
+import getErrorMessage from '../get-error-message.js'
 
 describe('lib', () => {
   describe('utilities', () => {

@@ -1,6 +1,6 @@
-import { join } from 'path'
-import migrations from '../../index'
-import type * as Migrations from '../../index.d'
+import { join } from 'node:path'
+import migrations from '../../index.js'
+import type * as Migrations from '../../index.d.js'
 
 const MIGRATIONS_DIR = join(__dirname, '../../__fixtures__/migrations')
 const MIGRATION_100: Migrations.IMigration = {

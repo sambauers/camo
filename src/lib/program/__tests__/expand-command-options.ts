@@ -1,5 +1,5 @@
-import expandCommandOptions from '../expand-command-options'
-import type * as Program from '../index.d'
+import expandCommandOptions from '../expand-command-options.js'
+import type * as Program from '../index.d.js'
 
 const PROGRAM_OPTIONS: Program.OptionTuples = [
   ['value', 'accessToken', 'a'],

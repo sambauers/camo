@@ -1,8 +1,8 @@
-import ensureNonEmptyOption from '../ensure-non-empty-option'
-import expandCommandOptions from '../expand-command-options'
-import * as exit from '../exit'
+import ensureNonEmptyOption from '../ensure-non-empty-option.js'
+import expandCommandOptions from '../expand-command-options.js'
+import * as exit from '../exit.js'
 
-import type * as Program from '../index.d'
+import type * as Program from '../index.d.js'
 
 const MOCK_OPTION_INSTANCES: Program.IOptionInstances = {
   accessToken: 'abc123',

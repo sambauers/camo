@@ -1,9 +1,9 @@
-import chalk from '../../lib/program/chalk'
-import arrayPad from '../../lib/utilities/array-pad'
-import arrayTrim from '../../lib/utilities/array-trim'
+import chalk from '../../lib/program/chalk.js'
+import arrayPad from '../../lib/utilities/array-pad.js'
+import arrayTrim from '../../lib/utilities/array-trim.js'
 
-import type * as Data from './index.d'
-import { isDataCell, isDataRow, isUnsafeData } from './guards'
+import type * as Data from './index.d.js'
+import { isDataCell, isDataRow, isUnsafeData } from './guards.js'
 
 const data = (
   unsafeData?: Data.UnsafeData,

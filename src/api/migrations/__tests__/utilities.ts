@@ -2,7 +2,7 @@ import {
   isValidMigrationFilename,
   getMigrationBasename,
   getMigrationId,
-} from '../utilities'
+} from '../utilities.js'
 
 const VALID_MIGRATION_FILENAMES = [
   '0-description.ts',

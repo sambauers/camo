@@ -1,4 +1,4 @@
-import exit from '../exit'
+import exit from '../exit.js'
 
 describe('lib', () => {
   describe('program', () => {

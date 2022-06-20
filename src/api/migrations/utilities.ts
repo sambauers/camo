@@ -1,5 +1,5 @@
-import { parse } from 'path'
-import type * as Migrations from './index.d'
+import { parse } from 'node:path'
+import type * as Migrations from './index.d.js'
 
 type FileName = Migrations.IMigration['filename']
 
