@@ -21,7 +21,7 @@ specifiers:
   inquirer: 9.0.0
   jest: 28.1.2
   prettier: 2.7.1
-  ts-jest: 28.0.5
+  ts-jest: 28.0.7
   ts-node: 10.8.2
   typescript: 4.7.4
 
@@ -48,7 +48,7 @@ devDependencies:
   eslint-plugin-prettier: 4.2.1_7uxdfn2xinezdgvmbammh6ev5i
   jest: 28.1.2_xxrvjbzikhxitk7f5ibhdub7ji
   prettier: 2.7.1
-  ts-jest: 28.0.5_lt5llx2ti6zt4eclhanfli5ynu
+  ts-jest: 28.0.7_lt5llx2ti6zt4eclhanfli5ynu
   ts-node: 10.8.2_lop4wfqyu2mwmbxemtyedy3zcy
   typescript: 4.7.4
 
@@ -3607,18 +3607,21 @@ packages:
       is-number: 7.0.0
     dev: true
 
-  /ts-jest/28.0.5_lt5llx2ti6zt4eclhanfli5ynu:
-    resolution: {integrity: sha512-Sx9FyP9pCY7pUzQpy4FgRZf2bhHY3za576HMKJFs+OnQ9jS96Du5vNsDKkyedQkik+sEabbKAnCliv9BEsHZgQ==}
+  /ts-jest/28.0.7_lt5llx2ti6zt4eclhanfli5ynu:
+    resolution: {integrity: sha512-wWXCSmTwBVmdvWrOpYhal79bDpioDy4rTT+0vyUnE3ZzM7LOAAGG9NXwzkEL/a516rQEgnMmS/WKP9jBPCVJyA==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
     peerDependencies:
       '@babel/core': '>=7.0.0-beta.0 <8'
+      '@jest/types': ^28.0.0
       babel-jest: ^28.0.0
       esbuild: '*'
       jest: ^28.0.0
       typescript: '>=4.3'
     peerDependenciesMeta:
       '@babel/core':
+        optional: true
+      '@jest/types':
         optional: true
       babel-jest:
         optional: true
