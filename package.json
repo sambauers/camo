@@ -36,7 +36,7 @@
   "dependencies": {
     "commander": "9.3.0",
     "common-tags": "1.8.2",
-    "contentful-management": "10.6.3",
+    "contentful-management": "10.9.0",
     "contentful-migration": "4.9.2",
     "dotenv": "16.0.1",
     "inquirer": "9.0.0"
