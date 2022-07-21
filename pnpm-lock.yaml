@@ -12,7 +12,7 @@ specifiers:
   '@typescript-eslint/parser': 5.30.7
   commander: 9.4.0
   common-tags: 1.8.2
-  contentful-management: 10.9.0
+  contentful-management: 10.9.1
   contentful-migration: 4.9.2
   dotenv: 16.0.1
   eslint: 8.20.0
@@ -28,7 +28,7 @@ specifiers:
 dependencies:
   commander: 9.4.0
   common-tags: 1.8.2
-  contentful-management: 10.9.0
+  contentful-management: 10.9.1
   contentful-migration: 4.9.2
   dotenv: 16.0.1
   inquirer: 9.0.2
@@ -1506,8 +1506,8 @@ packages:
     resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
     dev: true
 
-  /contentful-management/10.9.0:
-    resolution: {integrity: sha512-xEo4c7+qcW2tEd734iCtQTqu6mgtqZG4LihFTn7OBJ5kUEeiszgovic9uOwgz/g4gUYjclc1CzWqI5QmRMDCng==}
+  /contentful-management/10.9.1:
+    resolution: {integrity: sha512-IwKwMhxvu3fO9Ei1FtaQtvMqjVZc/xb9gFl6Pi155rUQBGUWNn6HL93b2apKCxmO9q1neQ6qgZccFrMtviKnXA==}
     engines: {node: '>=14'}
     dependencies:
       '@types/json-patch': 0.0.30
