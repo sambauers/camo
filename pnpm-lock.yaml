@@ -13,7 +13,7 @@ specifiers:
   commander: 9.4.0
   common-tags: 1.8.2
   contentful-management: 10.9.1
-  contentful-migration: 4.9.2
+  contentful-migration: 4.9.4
   dotenv: 16.0.1
   eslint: 8.20.0
   eslint-config-prettier: 8.5.0
@@ -29,7 +29,7 @@ dependencies:
   commander: 9.4.0
   common-tags: 1.8.2
   contentful-management: 10.9.1
-  contentful-migration: 4.9.2
+  contentful-migration: 4.9.4
   dotenv: 16.0.1
   inquirer: 9.0.2
 
@@ -407,6 +407,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@hapi/hoek/10.0.1:
+    resolution: {integrity: sha512-CvlW7jmOhWzuqOqiJQ3rQVLMcREh0eel4IBnxDx2FAcK8g7qoJRQK4L1CPBASoCY6y8e6zuCy3f2g+HWdkzcMw==}
+    dev: false
 
   /@hapi/hoek/9.3.0:
     resolution: {integrity: sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ==}
@@ -1533,11 +1537,12 @@ packages:
       - debug
     dev: false
 
-  /contentful-migration/4.9.2:
-    resolution: {integrity: sha512-QNZAtag1MRaAdB5nZ/Rb/+N5AjpqE+jc3cJ/8W7gGOvV0T+li4I0NIjZOv6JuggfZyAuhNUU/jZaswzbish+/Q==}
+  /contentful-migration/4.9.4:
+    resolution: {integrity: sha512-BjIlY4QfcxFhc3VVKnurcsZHEYyL7qm+viTIORJ92XKsStCx4DzSQSdB4jU6xRmIBLKlGfjQGyc2GnsN7H6myQ==}
     engines: {node: '>=8.0.0'}
     hasBin: true
     dependencies:
+      '@hapi/hoek': 10.0.1
       axios: 0.21.4
       bluebird: 3.7.2
       callsites: 3.1.0
@@ -1545,7 +1550,6 @@ packages:
       chalk: 4.1.2
       contentful-management: 7.54.2
       didyoumean2: 5.0.0
-      hoek: 6.1.3
       https-proxy-agent: 5.0.1
       inquirer: 8.2.4
       joi: 17.6.0
@@ -2156,11 +2160,6 @@ packages:
     engines: {node: '>= 0.4.0'}
     dependencies:
       function-bind: 1.1.1
-
-  /hoek/6.1.3:
-    resolution: {integrity: sha512-YXXAAhmF9zpQbC7LEcREFtXfGq5K1fmd+4PHkBq8NUqmzW3G+Dq10bI/i0KucLRwss3YYFQ0fSfoxBZYiGUqtQ==}
-    deprecated: This module has moved and is now available at @hapi/hoek. Please update your dependencies as this version is no longer maintained an may contain bugs and security issues.
-    dev: false
 
   /html-escaper/2.0.2:
     resolution: {integrity: sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==}
