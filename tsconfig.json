@@ -12,5 +12,8 @@
     "module": "es2022",
     "outDir": "./dist",
     "removeComments": true
+  },
+  "ts-node": {
+    "esm": true
   }
 }
