@@ -137,16 +137,16 @@ You can access descriptions of all command line options by running CAMO with the
 
 ```sh
 # npm
-$ npm run migrate --help
+$ npx camo --help
 
 # or yarn
-$ yarn migrate --help
+$ yarn camo --help
 
 # or pnpm
-$ pnpm migrate --help
+$ pnpm camo --help
 ```
 
-Note: This guide will just show commands using `npm` from here on, but you can
+Note: This guide will just show commands using `npx` from here on, but you can
 use your preferred package manager.
 
 ### Specifying individual migrations in command line options
@@ -178,7 +178,7 @@ If it does not find it, CAMO will ask you if you want to create it.
 The safest way to trigger this process is to run a "list" command:
 
 ```sh
-$ npm run migrate --list
+$ npx camo --list
 ```
 
 The list returned by this command will probably be empty, but check the full
@@ -197,33 +197,33 @@ to the local set of migrations in your local migrations directory.
 The most basic migration list grabs all migrations from all sources:
 
 ```sh
-$ npm run migrate --list
+$ npx camo --list
 ```
 
 You can also filter the list using some keywords:
 
 ```sh
 # Narrow down list to only show migrations that exist in the local directory
-$ npm run migrate --list local
+$ npx camo --list local
 
 # Only show migrations that are registered in Contentful
-$ npm run migrate --list registered
+$ npx camo --list registered
 
 # Only show migrations that are both local and registered
-$ npm run migrate --list local registered
+$ npx camo --list local registered
 
 # Only show migrations that are local abut not registered in Contentful
-$ npm run migrate --list unregistered
+$ npx camo --list unregistered
 ```
 
 You can even list one or more migrations where you know their IDs or filenames:
 
 ```sh
 # Just show the status of one migration
-$ npm run migrate --list 210-add-author-to-post
+$ npx camo --list 210-add-author-to-post
 
 # Show the status of many migrations
-$ npm run migrate --list 210-add-author-to-post 105-add-posts.ts 240
+$ npx camo --list 210-add-author-to-post 105-add-posts.ts 240
 ```
 
 ### Apply migrations
@@ -236,7 +236,7 @@ directory.
 
 ```sh
 # Apply all local migrations that have not already been applied
-$ npm run migrate
+$ npx camo
 ```
 
 You can also select specific migrations to run where you know their IDs or
@@ -244,10 +244,10 @@ filenames:
 
 ```sh
 # Apply a single selected migration
-$ npm run migrate --migrations 110-add-tags-to-posts.ts
+$ npx camo --migrations 110-add-tags-to-posts.ts
 
 # Apply multiple selected migrations
-$ npm run migrate --migrations 105-add-posts.ts 110 120-remove-author-title
+$ npx camo --migrations 105-add-posts.ts 110 120-remove-author-title
 ```
 
 If any of the requested migrations are already applied to the target Contentful
@@ -261,7 +261,7 @@ present.
 
 ```sh
 # See a list of all the migrations that would have been applied
-$ npm run migrate --dry
+$ npx camo --dry
 ```
 
 The `--dry` option can also be used when specifying migrations using the
