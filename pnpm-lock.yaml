@@ -21,7 +21,7 @@ specifiers:
   inquirer: 9.1.0
   jest: 28.1.3
   prettier: 2.7.1
-  ts-jest: 28.0.7
+  ts-jest: 28.0.8
   ts-node: 10.9.1
   typescript: 4.7.4
 
@@ -48,7 +48,7 @@ devDependencies:
   eslint-plugin-prettier: 4.2.1_h62lvancfh4b7r6zn2dgodrh5e
   jest: 28.1.3_lpnbhgxso4u2juc7wocetwmymy
   prettier: 2.7.1
-  ts-jest: 28.0.7_bi2kohzqnxavgozw3csgny5hju
+  ts-jest: 28.0.8_bi2kohzqnxavgozw3csgny5hju
   ts-node: 10.9.1_lep773egrlwq7kh77ngus6artu
   typescript: 4.7.4
 
@@ -3650,8 +3650,8 @@ packages:
       is-number: 7.0.0
     dev: true
 
-  /ts-jest/28.0.7_bi2kohzqnxavgozw3csgny5hju:
-    resolution: {integrity: sha512-wWXCSmTwBVmdvWrOpYhal79bDpioDy4rTT+0vyUnE3ZzM7LOAAGG9NXwzkEL/a516rQEgnMmS/WKP9jBPCVJyA==}
+  /ts-jest/28.0.8_bi2kohzqnxavgozw3csgny5hju:
+    resolution: {integrity: sha512-5FaG0lXmRPzApix8oFG8RKjAz4ehtm8yMKOTy5HX3fY6W8kmvOrmcY0hKDElW52FJov+clhUbrKAqofnj4mXTg==}
     engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
     hasBin: true
     peerDependencies:
