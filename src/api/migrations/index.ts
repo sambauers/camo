@@ -158,7 +158,7 @@ const migrations: Migrations.APIBuilder = ({ localDirectory }) => {
 
     getMigrations: (({ flags, list } = {}) => {
       if (
-        (typeof flags === 'undefined' || flags === {}) &&
+        (typeof flags === 'undefined' || Object.keys(flags).length < 1) &&
         (typeof list === 'undefined' || list === false)
       ) {
         return store.data
