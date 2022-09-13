@@ -4,5 +4,11 @@
   ],
   "enabledManagers": [
     "npm"
+  ],
+  "packageRules": [
+    {
+      "matchPackageNames": ["@types/node"],
+      "allowedVersions": "<17"
+    }
   ]
 }
