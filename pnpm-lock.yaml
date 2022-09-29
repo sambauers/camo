@@ -14,7 +14,7 @@ specifiers:
   common-tags: 1.8.2
   contentful-management: 10.15.0
   contentful-migration: 4.9.4
-  dotenv: 16.0.2
+  dotenv: 16.0.3
   eslint: 8.24.0
   eslint-config-prettier: 8.5.0
   eslint-plugin-prettier: 4.2.1
@@ -30,7 +30,7 @@ dependencies:
   common-tags: 1.8.2
   contentful-management: 10.15.0
   contentful-migration: 4.9.4
-  dotenv: 16.0.2
+  dotenv: 16.0.3
   inquirer: 9.1.2
 
 devDependencies:
@@ -1708,8 +1708,8 @@ packages:
       esutils: 2.0.3
     dev: true
 
-  /dotenv/16.0.2:
-    resolution: {integrity: sha512-JvpYKUmzQhYoIFgK2MOnF3bciIZoItIIoryihy0rIA+H4Jy0FmgyKYAHCTN98P5ybGSJcIFbh6QKeJdtZd1qhA==}
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
     dev: false
 
