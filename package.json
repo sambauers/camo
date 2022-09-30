@@ -34,7 +34,7 @@
     "dev": "ts-node bin/index.ts"
   },
   "dependencies": {
-    "commander": "9.4.0",
+    "commander": "9.4.1",
     "common-tags": "1.8.2",
     "contentful-management": "10.15.1",
     "contentful-migration": "4.9.6",
