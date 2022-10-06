@@ -46,7 +46,7 @@
     "@types/common-tags": "1.8.1",
     "@types/eslint": "8.4.6",
     "@types/inquirer": "9.0.2",
-    "@types/jest": "29.1.1",
+    "@types/jest": "29.1.2",
     "@types/node": "16.11.62",
     "@types/prettier": "2.7.1",
     "@typescript-eslint/eslint-plugin": "5.38.1",
