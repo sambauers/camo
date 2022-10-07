@@ -1,10 +1,11 @@
-import { InitialOptionsTsJest } from 'ts-jest'
+import type { JestConfigWithTsJest } from 'ts-jest'
 
-const config: InitialOptionsTsJest = {
+const config: JestConfigWithTsJest = {
   preset: 'ts-jest',
   extensionsToTreatAsEsm: ['.ts'],
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',
+    '#(.*)': '<rootDir>/node_modules/$1',
   },
   testEnvironment: 'node',
 }

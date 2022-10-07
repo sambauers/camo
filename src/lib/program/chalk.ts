@@ -21,3 +21,16 @@ export default {
   success: (input: string) => style(input, ['38;5;231', 39], [42, 49]),
   emphasise: underline,
 }
+
+/**
+ * These are the chalk package equivalnts, but chalk fights with ESM and Jest
+ * too much to bother with it.
+ */
+// export default {
+//   heading: chalk.underline,
+//   dim: chalk.dim,
+//   error: chalk.ansi256(231).bgRedBright,
+//   warning: chalk.ansi256(231).bgAnsi256(208),
+//   success: chalk.ansi256(231).bgGreen,
+//   emphasise: chalk.underline,
+// }
