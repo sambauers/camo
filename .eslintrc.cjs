@@ -8,7 +8,7 @@ const config = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
-  ignorePatterns: ['**/__fixtures__/**/*'],
+  ignorePatterns: ['src/api/migrations/__fixtures__/**/*'],
   rules: {
     '@typescript-eslint/no-unused-vars': [
       'error',
