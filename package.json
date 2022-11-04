@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": "v16.17.1"
+    "node": "16.18.1"
   },
   "type": "module",
   "bin": {
@@ -47,7 +47,7 @@
     "@types/eslint": "8.4.6",
     "@types/inquirer": "9.0.2",
     "@types/jest": "29.1.2",
-    "@types/node": "16.11.64",
+    "@types/node": "16.18.3",
     "@types/prettier": "2.7.1",
     "@typescript-eslint/eslint-plugin": "5.39.0",
     "@typescript-eslint/parser": "5.39.0",
