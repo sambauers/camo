@@ -4,7 +4,7 @@ specifiers:
   '@tsconfig/node16': 1.0.3
   '@types/common-tags': 1.8.1
   '@types/eslint': 8.4.10
-  '@types/inquirer': 9.0.2
+  '@types/inquirer': 9.0.3
   '@types/jest': 29.2.2
   '@types/node': 16.18.3
   '@types/prettier': 2.7.1
@@ -37,7 +37,7 @@ devDependencies:
   '@tsconfig/node16': 1.0.3
   '@types/common-tags': 1.8.1
   '@types/eslint': 8.4.10
-  '@types/inquirer': 9.0.2
+  '@types/inquirer': 9.0.3
   '@types/jest': 29.2.2
   '@types/node': 16.18.3
   '@types/prettier': 2.7.1
@@ -849,8 +849,8 @@ packages:
       '@types/node': 16.18.3
     dev: true
 
-  /@types/inquirer/9.0.2:
-    resolution: {integrity: sha512-MQc3adiIh/rDxLkjnvL03rSvuHg+/dKif4dn/MRsnE+oU1bAdyuDbW0w+ewR1M/M/u/Z0YAbw7NZYCpgQ5SW8A==}
+  /@types/inquirer/9.0.3:
+    resolution: {integrity: sha512-CzNkWqQftcmk2jaCWdBTf9Sm7xSw4rkI1zpU/Udw3HX5//adEZUIm9STtoRP1qgWj0CWQtJ9UTvqmO2NNjhMJw==}
     dependencies:
       '@types/through': 0.0.30
       rxjs: 7.5.7

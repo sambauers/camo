@@ -45,7 +45,7 @@
     "@tsconfig/node16": "1.0.3",
     "@types/common-tags": "1.8.1",
     "@types/eslint": "8.4.10",
-    "@types/inquirer": "9.0.2",
+    "@types/inquirer": "9.0.3",
     "@types/jest": "29.2.2",
     "@types/node": "16.18.3",
     "@types/prettier": "2.7.1",
