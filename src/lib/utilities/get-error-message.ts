@@ -2,13 +2,20 @@ type WithMessage = {
   message: string
 }
 
-const isWithMessage = (error: unknown): error is WithMessage =>
-  typeof error === 'object' &&
-  error !== null &&
-  'message' in error &&
-  typeof (error as Record<string, unknown>).message === 'string'
+const isWithMessage = (
+  maybeWithMessage: unknown
+): maybeWithMessage is WithMessage =>
+  typeof maybeWithMessage === 'object' &&
+  maybeWithMessage !== null &&
+  'message' in maybeWithMessage &&
+  typeof (maybeWithMessage as Record<string, unknown>).message === 'string'
 
 const toErrorWithMessage = (maybeWithMessage: unknown): WithMessage => {
+  if (maybeWithMessage instanceof Error) {
+    // For some reason the entire object is now returned by Contentful SDK
+    maybeWithMessage = JSON.parse(maybeWithMessage.message).message
+  }
+
   if (isWithMessage(maybeWithMessage)) {
     return maybeWithMessage
   }
@@ -24,6 +31,7 @@ const toErrorWithMessage = (maybeWithMessage: unknown): WithMessage => {
   }
 }
 
-const getErrorMessage = (error: unknown) => toErrorWithMessage(error).message
+const getErrorMessage = (maybeWithMessage: unknown) =>
+  toErrorWithMessage(maybeWithMessage).message
 
 export default getErrorMessage
