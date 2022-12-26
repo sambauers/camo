@@ -16,7 +16,7 @@ const toErrorWithMessage = (maybeWithMessage: unknown): WithMessage => {
     // Contentful SDK
     try {
       maybeWithMessage = JSON.parse(maybeWithMessage.message)
-    } catch(e) {
+    } catch (e) {
       // Do nothing
     }
   }
