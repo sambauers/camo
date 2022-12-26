@@ -7,6 +7,10 @@
   ],
   "packageRules": [
     {
+      "matchPackageNames": ["node"],
+      "allowedVersions": "<17"
+    },
+    {
       "matchPackageNames": ["@types/node"],
       "allowedVersions": "<17"
     }
