@@ -12,8 +12,13 @@ const isWithMessage = (
 
 const toErrorWithMessage = (maybeWithMessage: unknown): WithMessage => {
   if (maybeWithMessage instanceof Error) {
-    // For some reason the entire object is now returned by Contentful SDK
-    maybeWithMessage = JSON.parse(maybeWithMessage.message).message
+    // For some reason the entire object is now returned in the message by
+    // Contentful SDK
+    try {
+      maybeWithMessage = JSON.parse(maybeWithMessage.message)
+    } catch(e) {
+      // Do nothing
+    }
   }
 
   if (isWithMessage(maybeWithMessage)) {
