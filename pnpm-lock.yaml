@@ -13,7 +13,7 @@ specifiers:
   commander: 9.4.1
   common-tags: 1.8.2
   contentful-management: 10.26.0
-  contentful-migration: 4.12.6
+  contentful-migration: 4.12.9
   dotenv: 16.0.3
   eslint: 8.30.0
   eslint-config-prettier: 8.5.0
@@ -29,7 +29,7 @@ dependencies:
   commander: 9.4.1
   common-tags: 1.8.2
   contentful-management: 10.26.0
-  contentful-migration: 4.12.6
+  contentful-migration: 4.12.9
   dotenv: 16.0.3
   inquirer: 9.1.4
 
@@ -1567,8 +1567,8 @@ packages:
       - debug
     dev: false
 
-  /contentful-migration/4.12.6:
-    resolution: {integrity: sha512-PFK+3teFeMPVzygUJXGDtHMms89Lhg2i1oU9xpZF6B8f1kjxg4FtYdAEfSemrcp1iSi3qWvvskl+0Psf10fblw==}
+  /contentful-migration/4.12.9:
+    resolution: {integrity: sha512-YIdZjqSpdFzQMhFuDRg3U8+atzTGBY93c+kMRSR7lNmV0Gvf8IXgAOsC81OUJjSPSMXfkeaWOam460y7LRVSww==}
     engines: {node: '>=8.0.0'}
     hasBin: true
     dependencies:
