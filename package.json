@@ -35,7 +35,7 @@
     "regenerate-pnpm-lock": "rm -rf ./node_modules & rm pnpm-lock.yaml & pnpm install"
   },
   "dependencies": {
-    "commander": "9.4.1",
+    "commander": "10.0.0",
     "common-tags": "1.8.2",
     "contentful-management": "10.30.0",
     "contentful-migration": "4.12.9",
@@ -45,13 +45,13 @@
   "devDependencies": {
     "@tsconfig/node16": "1.0.3",
     "@types/common-tags": "1.8.1",
-    "@types/eslint": "8.21.1",
+    "@types/eslint": "8.21.2",
     "@types/inquirer": "9.0.3",
-    "@types/jest": "29.4.0",
-    "@types/node": "16.18.10",
+    "@types/jest": "29.4.1",
+    "@types/node": "16.18.15",
     "@types/prettier": "2.7.2",
-    "@typescript-eslint/eslint-plugin": "5.54.1",
-    "@typescript-eslint/parser": "5.54.1",
+    "@typescript-eslint/eslint-plugin": "5.55.0",
+    "@typescript-eslint/parser": "5.55.0",
     "eslint": "8.36.0",
     "eslint-config-prettier": "8.7.0",
     "eslint-plugin-prettier": "4.2.1",
