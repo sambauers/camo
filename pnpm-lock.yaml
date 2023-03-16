@@ -5,7 +5,7 @@ specifiers:
   '@types/common-tags': 1.8.1
   '@types/eslint': 8.21.2
   '@types/inquirer': 9.0.3
-  '@types/jest': 29.4.1
+  '@types/jest': 29.5.0
   '@types/node': 16.18.15
   '@types/prettier': 2.7.2
   '@typescript-eslint/eslint-plugin': 5.55.0
@@ -38,7 +38,7 @@ devDependencies:
   '@types/common-tags': 1.8.1
   '@types/eslint': 8.21.2
   '@types/inquirer': 9.0.3
-  '@types/jest': 29.4.1
+  '@types/jest': 29.5.0
   '@types/node': 16.18.15
   '@types/prettier': 2.7.2
   '@typescript-eslint/eslint-plugin': 5.55.0_342y7v4tc7ytrrysmit6jo4wri
@@ -894,8 +894,8 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jest/29.4.1:
-    resolution: {integrity: sha512-zDQSWXG+ZkEvs2zFFMszePhx4euKz+Yt3Gg1P+RHjfJBinTTr6L2DEyovO4V/WrKXuF0Dgn56GWGZPDa6TW9eQ==}
+  /@types/jest/29.5.0:
+    resolution: {integrity: sha512-3Emr5VOl/aoBwnWcH/EFQvlSAmjV+XtV9GGu5mwdYew5vhQh0IUZx/60x0TzHDu09Bi7HMx10t/namdJw5QIcg==}
     dependencies:
       expect: 29.5.0
       pretty-format: 29.5.0
