@@ -11,8 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup pnpm
+    # checkout
+    - name: Checkout repository code
+      uses: actions/checkout@v3
+    # install
+    - name: Setup PNPM
       uses: pnpm/action-setup@v2
       with:
         version: 7.29.1
@@ -21,6 +24,10 @@ jobs:
       with:
         node-version-file: '.nvmrc'
         cache: 'pnpm'
-    - run: chmod a-r ./src/api/migrations/__fixtures__/migrations-unreadable
-    - run: pnpm install --frozen-lockfile
-    - run: pnpm test
+    - name: Adjust fixture permissions
+      run: chmod a-r ./src/api/migrations/__fixtures__/migrations-unreadable
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
+    # test
+    - name: Run tests
+      run: pnpm test
