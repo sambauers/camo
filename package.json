@@ -2,7 +2,7 @@
   "name": "@sambauers/camo",
   "displayName": "Contentful Active Migration Organiser (CAMO)",
   "description": "Applies and provides status for migrations associated with the target Contentful space.",
-  "version": "1.1.15",
+  "version": "1.1.16",
   "repository": {
     "type": "git",
     "url": "git://github.com/sambauers/camo.git"
