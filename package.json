@@ -2,7 +2,7 @@
   "name": "@sambauers/camo",
   "displayName": "Contentful Active Migration Organiser (CAMO)",
   "description": "Applies and provides status for migrations associated with the target Contentful space.",
-  "version": "1.1.16",
+  "version": "1.2.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/sambauers/camo.git"
@@ -26,11 +26,12 @@
     "src/**/*"
   ],
   "scripts": {
+    "clean": "rm -rf dist",
+    "lint": "eslint .",
+    "test": "jest --coverage",
+    "build": "pnpm clean && pnpm lint && pnpm test && tsc",
     "copy-release-files": "ts-node bin/copy-release-files.ts",
     "release": "pnpm build && pnpm copy-release-files && pnpm publish dist",
-    "build": "rm -rf dist && pnpm lint && pnpm test && tsc",
-    "test": "jest --coverage",
-    "lint": "eslint .",
     "dev": "ts-node bin/index.ts",
     "regenerate-pnpm-lock": "rm -rf ./node_modules & rm pnpm-lock.yaml & pnpm install"
   },
