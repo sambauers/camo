@@ -36,7 +36,7 @@
     "regenerate-pnpm-lock": "rm -rf ./node_modules & rm pnpm-lock.yaml & pnpm install"
   },
   "dependencies": {
-    "commander": "10.0.0",
+    "commander": "10.0.1",
     "common-tags": "1.8.2",
     "contentful-management": "10.31.5",
     "contentful-migration": "4.12.9",
