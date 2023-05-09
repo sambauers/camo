@@ -39,7 +39,7 @@
   "dependencies": {
     "commander": "10.0.1",
     "common-tags": "1.8.2",
-    "contentful-management": "10.32.0",
+    "contentful-management": "10.35.3",
     "contentful-migration": "4.12.9",
     "dotenv": "16.0.3",
     "inquirer": "9.1.5"
