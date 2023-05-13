@@ -1,5 +1,4 @@
 {
-  "extends": "@tsconfig/node16/tsconfig.json",
   "include": [
     "bin/index.ts",
     "src/**/*.ts"
@@ -9,6 +8,14 @@
     "**/__tests__/*"
   ],
   "compilerOptions": {
+    "lib": ["es2021"],
+    "target": "es2021",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "node",
+    
     "module": "es2022",
     "outDir": "./dist",
     "removeComments": true

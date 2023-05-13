@@ -10,6 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+
     steps:
     # checkout
     - name: Checkout repository code
@@ -19,10 +23,10 @@ jobs:
       uses: pnpm/action-setup@v2
       with:
         version: 8.5.0
-    - name: Setup Node.js
+    - name: Setup Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v3
       with:
-        node-version-file: '.nvmrc'
+        node-version: ${{ matrix.node-version }}
         cache: 'pnpm'
     - name: Adjust fixture permissions
       run: chmod a-r ./src/api/migrations/__fixtures__/migrations-unreadable
