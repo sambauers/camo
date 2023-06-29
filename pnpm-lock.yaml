@@ -8,8 +8,8 @@ dependencies:
     specifier: 1.8.2
     version: 1.8.2
   contentful-management:
-    specifier: 10.35.3
-    version: 10.35.3(typescript@5.0.4)
+    specifier: 10.38.3
+    version: 10.38.3(typescript@5.0.4)
   contentful-migration:
     specifier: 4.12.9
     version: 4.12.9
@@ -1552,8 +1552,8 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
-  /contentful-management@10.35.3(typescript@5.0.4):
-    resolution: {integrity: sha512-kX/dIfIChAViTkjYZdTzj2Yf3PF7G1kXgLf44qwaE9rwv2tZ5/MjYrqZhDCDxaSBREhD9NZWpsXWPGDD5I2CLw==}
+  /contentful-management@10.38.3(typescript@5.0.4):
+    resolution: {integrity: sha512-hAuUSEfPYMQ6aplaENkZM5Zvhg9q+yiCsbm++pyHadUr5x+XKC9D85fASXuA4vI0hB/K66YHaqBiJ7CwAHT9bQ==}
     engines: {node: '>=14'}
     dependencies:
       '@contentful/rich-text-types': 16.1.0
