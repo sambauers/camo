@@ -22,7 +22,7 @@
     "bin/**/*",
     "src/**/*"
   ],
-  "packageManager": "pnpm@8.5.0",
+  "packageManager": "pnpm@8.6.5",
   "scripts": {
     "clean": "rm -rf dist",
     "lint": "eslint .",
