@@ -46,7 +46,7 @@
     "@types/eslint": "8.40.2",
     "@types/inquirer": "9.0.3",
     "@types/jest": "29.5.2",
-    "@types/node": "18.16.8",
+    "@types/node": "18.16.19",
     "@types/prettier": "2.7.3",
     "@typescript-eslint/eslint-plugin": "5.60.1",
     "@typescript-eslint/parser": "5.60.1",
