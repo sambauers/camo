@@ -12,8 +12,8 @@ dependencies:
     specifier: 1.8.2
     version: 1.8.2
   contentful-management:
-    specifier: 10.38.3
-    version: 10.38.3
+    specifier: 10.39.1
+    version: 10.39.1
   contentful-migration:
     specifier: 4.14.0
     version: 4.14.0
@@ -1556,8 +1556,8 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
-  /contentful-management@10.38.3:
-    resolution: {integrity: sha512-hAuUSEfPYMQ6aplaENkZM5Zvhg9q+yiCsbm++pyHadUr5x+XKC9D85fASXuA4vI0hB/K66YHaqBiJ7CwAHT9bQ==}
+  /contentful-management@10.39.1:
+    resolution: {integrity: sha512-AMZJKcaXY5gSNjBs55iZqH3PwzJIrpaZ+ZDwkPj27db1zlJeaqJRNzDTWNXFWjBrLEvshav5U4K+SyU7QV0rwA==}
     engines: {node: '>=14'}
     dependencies:
       '@contentful/rich-text-types': 16.2.0
