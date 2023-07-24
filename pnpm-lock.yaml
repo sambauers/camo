@@ -12,8 +12,8 @@ dependencies:
     specifier: 1.8.2
     version: 1.8.2
   contentful-management:
-    specifier: 10.39.1
-    version: 10.39.1
+    specifier: 10.39.2
+    version: 10.39.2
   contentful-migration:
     specifier: 4.14.1
     version: 4.14.1
@@ -1587,8 +1587,8 @@ packages:
     resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
-  /contentful-management@10.39.1:
-    resolution: {integrity: sha512-AMZJKcaXY5gSNjBs55iZqH3PwzJIrpaZ+ZDwkPj27db1zlJeaqJRNzDTWNXFWjBrLEvshav5U4K+SyU7QV0rwA==}
+  /contentful-management@10.39.2:
+    resolution: {integrity: sha512-B19Fi6XtwaAwzslVQ2tWiffqVFKUWDxd90IjX+6K7xm2Vr2Orn5kpbwWQ2RlkK957SbE5QjgAtQeqC2hnOrVww==}
     engines: {node: '>=14'}
     dependencies:
       '@contentful/rich-text-types': 16.2.0
@@ -1597,7 +1597,7 @@ packages:
       contentful-sdk-core: 7.1.0
       fast-copy: 3.0.1
       lodash.isplainobject: 4.0.6
-      type-fest: 3.13.1
+      type-fest: 4.0.0
     transitivePeerDependencies:
       - debug
     dev: false
@@ -3884,9 +3884,9 @@ packages:
     engines: {node: '>=12.20'}
     dev: false
 
-  /type-fest@3.13.1:
-    resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
-    engines: {node: '>=14.16'}
+  /type-fest@4.0.0:
+    resolution: {integrity: sha512-d/oYtUnPM9zar2fqqGLYPzgcY0qUlYK0evgNVti93xpzfjGkMgZHu9Lvgrkn0rqGXTgsFRxFamzjGoD9Uo+dgw==}
+    engines: {node: '>=16'}
     dev: false
 
   /typescript@5.1.6:
