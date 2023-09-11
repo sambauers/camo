@@ -39,7 +39,7 @@
     "contentful-management": "10.39.1",
     "contentful-migration": "4.14.1",
     "dotenv": "16.3.1",
-    "inquirer": "9.2.8"
+    "inquirer": "9.2.11"
   },
   "devDependencies": {
     "@types/common-tags": "1.8.1",
