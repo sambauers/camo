@@ -15,8 +15,8 @@ dependencies:
     specifier: 10.39.1
     version: 10.39.1
   contentful-migration:
-    specifier: 4.14.1
-    version: 4.14.1
+    specifier: 4.16.0
+    version: 4.16.0
   dotenv:
     specifier: 16.3.1
     version: 16.3.1
@@ -1624,8 +1624,8 @@ packages:
       - debug
     dev: false
 
-  /contentful-migration@4.14.1:
-    resolution: {integrity: sha512-QJ/jMU/ybXp2/iThp5LeFdlQRob+zX6+vPmjHNDM1b5Rowj96L8o+Dws8L9gGtTkQ4oYG3iX1grXxAL55q8TNQ==}
+  /contentful-migration@4.16.0:
+    resolution: {integrity: sha512-gJVgd3xGYmctmY2j2HFDUFpP82JpxxF2fU7I1EzJoUPwWLjv1XiSE1Lwd8lcrdcn8Pu5ZzDbqkuyXHmvLo40ng==}
     engines: {node: '>=8.0.0'}
     hasBin: true
     dependencies:
