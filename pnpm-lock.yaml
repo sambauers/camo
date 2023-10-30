@@ -15,8 +15,8 @@ dependencies:
     specifier: 10.39.1
     version: 10.39.1
   contentful-migration:
-    specifier: 4.14.1
-    version: 4.14.1
+    specifier: 4.17.3
+    version: 4.17.3
   dotenv:
     specifier: 16.3.1
     version: 16.3.1
@@ -429,6 +429,11 @@ packages:
 
   /@contentful/rich-text-types@16.2.0:
     resolution: {integrity: sha512-4BHC+mfa50JB70epzpnas4EkiuB3mGdBZ5Rp8w7R5wXvswEf8TLg5yGau2FxmZeEjrAkDrt4vzBLVQ8v3Y//Jw==}
+    engines: {node: '>=6.0.0'}
+    dev: false
+
+  /@contentful/rich-text-types@16.3.0:
+    resolution: {integrity: sha512-OfQmAu5bxE0CgQA3WlUleVej+ifFG/iXmB2DmUl4EyWyFue1aiIvfjxQhcDRSH4n1jUNMJ6L1wInZL8uV5m3TQ==}
     engines: {node: '>=6.0.0'}
     dev: false
 
@@ -1237,19 +1242,21 @@ packages:
     resolution: {integrity: sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==}
     dev: false
 
-  /axios@0.21.4:
-    resolution: {integrity: sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==}
-    dependencies:
-      follow-redirects: 1.15.2
-    transitivePeerDependencies:
-      - debug
-    dev: false
-
   /axios@0.27.2:
     resolution: {integrity: sha512-t+yRIyySRTp/wua5xEr+z1q60QmLq8ABsS5O9Me1AsE5dfKqgnCFzwiCZZ/cGNd1lq4/7akDWMxdhVlucjmnOQ==}
     dependencies:
       follow-redirects: 1.15.2
       form-data: 4.0.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /axios@1.6.0:
+    resolution: {integrity: sha512-EZ1DYihju9pwVB+jg67ogm+Tmqc6JmhamRN6I4Zt8DfZu5lbcQGw3ozH9lFejSJgs/ibaef3A9PMXPLeefFGJg==}
+    dependencies:
+      follow-redirects: 1.15.2
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
     transitivePeerDependencies:
       - debug
     dev: false
@@ -1610,32 +1617,33 @@ packages:
       - debug
     dev: false
 
-  /contentful-management@7.54.2:
-    resolution: {integrity: sha512-up7a31QsVM3ADXm6CrLGp9u/AVHO/yIDJGyS9Ztesa/xlxJgGmrEMTqUevauT1Y/5vC54gBM5S8in1zcP7atqQ==}
-    engines: {node: '>=6'}
+  /contentful-management@11.3.0:
+    resolution: {integrity: sha512-Iu8r9DBhs/UNRWGkmJ/ssHA9I5JgoYXM+MDzCyjZ4T8zJMqlfR2L53Ho+TQSw21msRperBhpjkNvbvwHyfJQIQ==}
+    engines: {node: '>=18'}
     dependencies:
+      '@contentful/rich-text-types': 16.3.0
       '@types/json-patch': 0.0.30
-      axios: 0.21.4
-      contentful-sdk-core: 6.11.0
-      fast-copy: 2.1.7
+      axios: 1.6.0
+      contentful-sdk-core: 8.1.0
+      fast-copy: 3.0.1
       lodash.isplainobject: 4.0.6
-      type-fest: 2.19.0
+      type-fest: 4.6.0
     transitivePeerDependencies:
       - debug
     dev: false
 
-  /contentful-migration@4.14.1:
-    resolution: {integrity: sha512-QJ/jMU/ybXp2/iThp5LeFdlQRob+zX6+vPmjHNDM1b5Rowj96L8o+Dws8L9gGtTkQ4oYG3iX1grXxAL55q8TNQ==}
+  /contentful-migration@4.17.3:
+    resolution: {integrity: sha512-FqSkX3zGkYjdyd29pGaGH5GqASZZgGCqVOmEOqAReUo90rZdgjua56z9t/BjR3QopfcGi+bGxPqk57UPry1g/w==}
     engines: {node: '>=8.0.0'}
     hasBin: true
     dependencies:
       '@hapi/hoek': 10.0.1
-      axios: 0.21.4
+      axios: 1.6.0
       bluebird: 3.7.2
       callsites: 3.1.0
       cardinal: 2.1.1
       chalk: 4.1.2
-      contentful-management: 7.54.2
+      contentful-management: 11.3.0
       didyoumean2: 5.0.0
       https-proxy-agent: 5.0.1
       inquirer: 8.2.5
@@ -1643,23 +1651,13 @@ packages:
       kind-of: 6.0.3
       listr2: 3.14.0
       lodash: 4.17.21
+      p-throttle: 4.1.1
       uuid: 9.0.0
       yargs: 15.4.1
     transitivePeerDependencies:
       - debug
       - enquirer
       - supports-color
-    dev: false
-
-  /contentful-sdk-core@6.11.0:
-    resolution: {integrity: sha512-ukKxiiHdCa/izTQbA3/VUPMQB2PZW5D2KYjV9WQVOc8QjmDhu1wpEDkYxYjOrUDgT5tM7xw6umpwlifxoYe9kQ==}
-    engines: {node: '>=6'}
-    dependencies:
-      fast-copy: 2.1.7
-      lodash.isplainobject: 4.0.6
-      lodash.isstring: 4.0.1
-      p-throttle: 4.1.1
-      qs: 6.11.2
     dev: false
 
   /contentful-sdk-core@7.1.0:
@@ -1671,6 +1669,16 @@ packages:
       lodash.isstring: 4.0.1
       p-throttle: 4.1.1
       qs: 6.11.2
+    dev: false
+
+  /contentful-sdk-core@8.1.0:
+    resolution: {integrity: sha512-ZXTtrkrx4OlRcVY0WLihrskF+BSuHe7QZuWA8DNEeTlHmkPXAVch9Og5TJDoyGeqNrArR3Ovd7yfaG+1QYo+ag==}
+    engines: {node: '>=12'}
+    dependencies:
+      fast-copy: 2.1.7
+      lodash.isplainobject: 4.0.6
+      lodash.isstring: 4.0.1
+      p-throttle: 4.1.1
     dev: false
 
   /convert-source-map@1.9.0:
@@ -3507,6 +3515,10 @@ packages:
       sisteransi: 1.0.5
     dev: true
 
+  /proxy-from-env@1.1.0:
+    resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
+    dev: false
+
   /punycode@2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
@@ -3963,14 +3975,14 @@ packages:
     resolution: {integrity: sha512-t0rzBq87m3fVcduHDUFhKmyyX+9eo6WQjZvf51Ea/M0Q7+T374Jp1aUiyUl0GKxp8M/OETVHSDvmkyPgvX+X2w==}
     engines: {node: '>=10'}
 
-  /type-fest@2.19.0:
-    resolution: {integrity: sha512-RAH822pAdBgcNMAfWnCBU3CFZcfZ/i1eZjwFU/dsLKumyuuP3niueg2UAukXYF0E2AAoc82ZSSf9J0WQBinzHA==}
-    engines: {node: '>=12.20'}
-    dev: false
-
   /type-fest@3.13.1:
     resolution: {integrity: sha512-tLq3bSNx+xSpwvAJnzrK0Ep5CLNWjvFTOp71URMaAEWBfRb9nnJiBoUe0tF8bI4ZFO3omgBR6NvnbzVUT3Ly4g==}
     engines: {node: '>=14.16'}
+    dev: false
+
+  /type-fest@4.6.0:
+    resolution: {integrity: sha512-rLjWJzQFOq4xw7MgJrCZ6T1jIOvvYElXT12r+y0CC6u67hegDHaxcPqb2fZHOGlqxugGQPNB1EnTezjBetkwkw==}
+    engines: {node: '>=16'}
     dev: false
 
   /typescript@5.1.6:
